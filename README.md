@@ -1,24 +1,23 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# more-kind
+  ###車椅子ユーザーやベビーカーを利用している方が利用しやすい施設を探せる情報共有サイトです
+  
+ ##アプリケーションの詳細な説明
+   ###車椅子利用可の施設でも扉が開き戸であったり、スロープの曲がり角度が急であったりと介助者がいることを前提とすることがあります。
+   ###このサイトでは当事者が施設のレビューを共有しあうことで複数の介助者が必要か、スロープは十分な幅があるのかなどといった当事者目線での利用しやすさを事前に確認することができ、不安なく移動や施設利用が出来ることを目的としています。
+   ###「扉」「トイレ」「スロープ」といったカテゴリを設けており、各々が不安に感じている箇所を個別で検索することもできます。
+ 
+ ##使っている言語
+   ###ruby on rails
+   
+ ##実装した機能
+   ###ゲストログイン
+   ###会員機能
+   ###投稿機能
+   ###投稿検索機能(キーワード検索)
+   ###投稿検索機能(タグ検索)
+   ###レビュー機能
+   ###コメント機能
+   ###レビュー管理(管理者)
+   ###ユーザー検索機能
+   ###コメント管理機能
+   ###絞り込み
