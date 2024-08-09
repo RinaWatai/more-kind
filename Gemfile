@@ -62,3 +62,7 @@ end
 gem "net-smtp"
 gem "net-pop"
 gem "net-imap"
+
+gem 'devise'
+gem 'kaminari'
+gem 'ransack'
