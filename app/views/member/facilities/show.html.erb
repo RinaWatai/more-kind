@@ -19,6 +19,22 @@
             <td style="padding-left: 2rem;"><%= @facility.body %></td>
           </tr>
         </table>
+      
+      <!--コメント機能-->
+<%= form_with(model: @facility, url: member_facility_path(@facility), method: :post, local: true) do |f| %>
+        <div class="row mb-1">
+          <label for="comments" class="col-sm-2 col-form-label col-form-label-sm"><strong>コメントする</strong></label>
+          <div class="col-sm-2">
+            <%= f.text_field :body, autofocus: true, class: "form-control form-control-sm" %>
+          </div>
+        </div>
+        <div class="row mb-1">
+          <label for="comments" class="col-sm-2 col-form-label col-form-label-sm"></label>
+          <div class="col-sm-2">
+            <%= f.submit 'コメントする', class: "btn btn-primary" %>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

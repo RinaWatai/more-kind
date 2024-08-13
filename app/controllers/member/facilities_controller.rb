@@ -24,6 +24,11 @@ class Member::FacilitiesController < ApplicationController
     
     def update
       @facility = Facility.find(params[:id])
+      if @facility.update(facility_params)
+        redirect_to @facility, notice: '施設が正しく更新されました。'
+      else
+        render :edit
+      end
     end
     
     def destroy

@@ -4,7 +4,13 @@
       <div class="facilities mt-4 mb-4" >
         <%= link_to '施設を新規登録する', new_member_facility_path %>
         
-        
+                  <% @facilities.each do |facility| %>
+            <tr>
+              <td><%= facility.title %></td>
+              <td><%= facility.body %></td>
+              <td><%= link_to '編集する', edit_member_facility_path(facility), class: 'btn btn-success' %></td>
+            </tr>
+          <% end %>
       </div>
     </div>
   </div>
