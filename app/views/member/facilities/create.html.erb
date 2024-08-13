@@ -1,9 +1,15 @@
 <div class="container mt-4">
   <div class="col-12 col-md-9 d-flex flex-column align-items-center justify-content-center welcome-container">
     <div class="welcome-text mt-4 mb-4">
-      <%= form_with model: Comment, url: member_facility_path do |f| %>
+      <%= form_with model: Facility, url: member_facilities_path do |f| %>
         <div class="row mb-1">
-          <label for="comment" class="col-sm-2 col-form-label col-form-label-sm"><strong>コメント</strong></label>
+          <label for="facilities" class="col-sm-2 col-form-label col-form-label-sm"><strong>施設名</strong></label>
+          <div class="col-sm-2">
+            <%= f.text_field :title, autofocus: true, class: "form-control form-control-sm" %>
+          </div>
+        </div>
+        <div class="row mb-1">
+          <label for="facilities" class="col-sm-2 col-form-label col-form-label-sm"><strong>施設説明</strong></label>
           <div class="col-sm-2">
             <%= f.text_field :body, autofocus: true, class: "form-control form-control-sm" %>
           </div>
@@ -11,7 +17,7 @@
         <div class="row mb-1">
           <label for="facilities" class="col-sm-2 col-form-label col-form-label-sm"></label>
           <div class="col-sm-2">
-            <%= f.submit 'コメントする', class: "btn btn-primary" %>
+            <%= f.submit '保存する', class: "btn btn-primary" %>
           </div>
         </div>
       <% end %>

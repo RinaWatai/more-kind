@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2024_08_07_110024) do
   create_table "facilities", force: :cascade do |t|
     t.string "title", null: false
     t.text "body", null: false
+    t.integer "member_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  root 'homes#top' # ルートを Member::HomesController の top アクションに設定
+  get '/about', to: 'homes#about'
+  
   # 顧客用
   # URL /customers/sign_in ...
   devise_for :members, skip: [:passwords], controllers: {
@@ -14,20 +17,21 @@ Rails.application.routes.draw do
 
   # Member routes
   namespace :member do
-    root 'homes#top' # ルートを Member::HomesController の top アクションに設定
-    get '/about', to: 'homes#about'
     
-    resources :facilities, except: [:new]
-    resources :comments
-    resources :tags, only: [:index, :show]
+    resources :facilities do
+      resources :comments, only: [:create, :edit, :update, :destroy]
+    end
+
     # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   end
 
   namespace :admin do
-    root 'homes#top'
-    
     resources :members, only: [:index, :show, :edit, :update, :destroy]
-    resources :facilities, except: [:new]
+    resources :facilities, only: [:index, :show, :destroy] do
+      resources :comments, only: [:destroy]
+    end
+    
+    resources :tag, excet: [:show]
     # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   end
 end

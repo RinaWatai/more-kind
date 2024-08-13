@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="col-auto">
+      <h4 style="background-color: #f8f9fa; padding: 0.25rem 0.75rem;">施設詳細</h4>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="d-flex">
+      
+      <div>
+        <table class="facility_show">
+          <tr>
+            <th style="padding-right: 2rem;">施設名</th>
+            <td style="padding-left: 2rem;"><%= @facility.title %></td>
+          </tr>
+          <tr>
+            <th style="padding-right: 2rem;">施設説明</th>
+            <td style="padding-left: 2rem;"><%= @facility.body %></td>
+          </tr>
+        </table>
+    </div>
+  </div>
+</div>
