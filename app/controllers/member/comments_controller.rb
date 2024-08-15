@@ -1,5 +1,5 @@
 class Member::CommentsController < ApplicationController
-  before_action :is_matching_login_member, only: [:edit, :create, :destroy, :update]
+before_action :authenticate_member!, only: [:edit, :create, :destroy, :update]
   
     def new
       @comment = Comment.new
@@ -46,11 +46,5 @@ class Member::CommentsController < ApplicationController
     def comment_params
       params.require(:facility).permit(:body)
     end
-    
-    def is_matching_login_member
-      member = Member.find(params[:facility_id])
-      unless member.id == current_member.id
-        redirect_to root_path
-      end
-    end    
+
 end
