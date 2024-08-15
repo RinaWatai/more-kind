@@ -1,0 +1,21 @@
+<%= form_with model: @facility, url: member_facility_path do |f| %>
+  <div class="row mb-1">
+    <label for="facilities" class="col-sm-2 col-form-label col-form-label-sm"><strong>施設名</strong></label>
+    <div class="col-sm-2">
+      <%= f.text_field :title, autofocus: true, class: "form-control form-control-sm" %>
+    </div>
+  </div>
+  <div>
+    <label for="facilities" class="col-sm-2 col-form-label col-form-label-sm"><strong>施設説明</strong></label>
+    <div>
+      <%= f.text_field :body, autofocus: true, class: "form-control form-control-sm" %>
+    </div>
+  </div>
+  <div>
+    <label for="facilities" class="col-sm-2 col-form-label col-form-label-sm"></label>
+    <div>
+      <%= f.submit '保存する', class: "btn btn-primary" %>
+    </div>
+  </div>
+  <%= link_to '削除する', member_facility_comment_path(@facility), method: :delete, data: { confirm: '本当に削除しますか?' }, class: 'btn btn-danger' %>
+<% end %>

@@ -1,4 +1,5 @@
 class Member::FacilitiesController < ApplicationController
+before_action :is_matching_login_member, only: [:create, :edit, :update, :destroy]
     def new
       @facility = Facility.new
     end
@@ -9,6 +10,8 @@ class Member::FacilitiesController < ApplicationController
     
     def show
       @facility = Facility.find(params[:id])
+      @comment = Comment.find(params[:id])
+      @comments = Comment.all
     end
     
     def create
@@ -40,5 +43,12 @@ class Member::FacilitiesController < ApplicationController
     
     def facility_params
       params.require(:facility).permit(:title, :body, :member_id)
+    end
+    
+    def is_matching_login_member
+      member = Member.find(params[:id])
+      unless member.id == current_member.id
+        redirect_to root_path
+      end
     end
 end

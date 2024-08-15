@@ -3,18 +3,22 @@
     <div class="welcome-text mt-4 mb-4">
       <%= form_with model: Facility, url: member_facilities_path do |f| %>
         <div class="row mb-1">
-          <label for="facilities" class="col-sm-2 col-form-label col-form-label-sm"><strong>施設名</strong></label>
-          <div class="col-sm-2">
+          <div>
+            <strong>施設名</strong>
+          </div>  
+          <div>
             <%= f.text_field :title, autofocus: true, class: "form-control form-control-sm" %>
           </div>
         </div>
-        <div class="row mb-1">
-          <label for="facilities" class="col-sm-2 col-form-label col-form-label-sm"><strong>施設説明</strong></label>
-          <div class="col-sm-2">
+        <div>
+          <div>
+            <strong>施設説明</strong>
+          </div>
+          <div>
             <%= f.text_field :body, autofocus: true, class: "form-control form-control-sm" %>
           </div>
         </div>
-        <div class="row mb-1">
+        <div>
           <label for="facilities" class="col-sm-2 col-form-label col-form-label-sm"></label>
           <div class="col-sm-2">
             <%= f.submit '施設を登録する', class: "btn btn-primary" %>
