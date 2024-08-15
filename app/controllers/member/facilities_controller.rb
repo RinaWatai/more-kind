@@ -10,7 +10,7 @@ before_action :authenticate_member!, only: [:create, :edit, :update, :destroy]
     
     def show
       @facility = Facility.find(params[:id])
-      @comment = Comment.find(params[:id])
+      @comment = Comment.new
       @comments = Comment.all
     end
     
