@@ -25,16 +25,30 @@
         </table>
 
         <!--コメント一覧-->
-        <p>コメント一覧</p>
-        <% if @comments.nil? %>
-          <p>コメントはありません。</p>
-        <% else %>
-          <% @comments.each do |comment| %>
-            <%= comment.body %>
-            <%= comment.member.name %>
-            <%= link_to '編集する', edit_member_facility_comment_path(comment), class: 'btn btn-primary' %>
-          <% end %>
-        <% end %>
+<table>
+  <thead>
+    <tr>
+      <th>コメント本文</th>
+      <th>メンバー名</th>
+      <th>編集</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @comments.nil? %>
+      <tr>
+        <td colspan="3">コメントはありません。</td>
+      </tr>
+    <% else %>
+      <% @comments.each do |comment| %>
+        <tr>
+          <td><%= comment.body %></td>
+          <td><%= comment.member.name %></td>
+          <td><%= link_to '編集する', edit_member_facility_comment_path(comment), class: 'btn btn-primary' %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
 
 
         <!--コメント機能-->

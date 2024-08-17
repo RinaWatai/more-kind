@@ -5,7 +5,7 @@
       <th>Title</th>
       <th>Opinion</th>
       <th>コメント数</th>
-      <th></th>
+      <th>タグ</th>
     </tr>
   </thead>
   <tbody>
@@ -21,7 +21,10 @@
         <td><%= facility.body %></td>
         <td><%= facility.comments.count %></td>
         <td>
-          <%= render "amin/facilities/tag_list", tag_list: facility.tag
+          <%= render "admin/facilities/tag_list", tag_list: facility.tag_list %>
+      <%= form_with model: @facility, url: admin_facilities_path(@facility) do |f| %>
+        <%= render 'form', f: f %>
+      <% end %>
         </td>
       </tr>
     <% end %>
