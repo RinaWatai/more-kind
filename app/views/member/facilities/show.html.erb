@@ -18,6 +18,10 @@
             <th>施設説明</th>
             <td><%= @facility.body %></td>
           </tr>
+          <tr>
+            <th>tag</th>
+            <td><%= render 'member/facilities/tag_list', tag_list: @facility.tag_list %></td>
+          </tr>
         </table>
 
         <!--コメント一覧-->

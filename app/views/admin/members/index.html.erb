@@ -1,0 +1,21 @@
+<div class="row align-items-center">
+  <div class="col-auto">
+    <h4 style="background-color: #f8f9fa; padding: 0.25rem 0.75rem;">会員一覧</h4>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>会員ID</th>
+        <th>ニックネーム</th>
+        <th>メールアドレス</th>
+      </tr>
+    </thead>
+<% @members.each do |member| %>
+  <tr>
+    <td><%= member.id %></td>
+    <td><%= link_to member.name, admin_member_path(member) %></td>
+    <td><%= member.email %></td>
+  </tr>
+<% end %>
+  </table>
+</div>

@@ -5,7 +5,9 @@ before_action :authenticate_member!, only: [:create, :edit, :update, :destroy]
     end
   
     def index
-      @facilities = Facility.page(params[:page]).per(10)
+      @facilities = Facility.all
+      @facilities = @facilities.tagged_with(params[:tag]) if params[:tag].present?
+      @facilities = @facilities.page(params[:page]).per(10)
     end
     
     def show
@@ -28,7 +30,7 @@ before_action :authenticate_member!, only: [:create, :edit, :update, :destroy]
     def update
       @facility = Facility.find(params[:id])
       if @facility.update(facility_params)
-        redirect_to @facility, notice: '施設が正しく更新されました。'
+        redirect_to member_facility_path(@facility), notice: '施設が正しく更新されました。'
       else
         render :edit
       end
@@ -42,7 +44,7 @@ before_action :authenticate_member!, only: [:create, :edit, :update, :destroy]
     private
     
     def facility_params
-      params.require(:facility).permit(:title, :body, :member_id)
+      params.require(:facility).permit(:title, :body, :member_id, :tag_list)
     end
     
 end

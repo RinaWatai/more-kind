@@ -30,8 +30,8 @@ Rails.application.routes.draw do
     resources :facilities, only: [:index, :show, :destroy] do
       resources :comments, only: [:destroy]
     end
-    
-    resources :tag, excet: [:show]
-    # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+    resources :tags
   end
+    
+    # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

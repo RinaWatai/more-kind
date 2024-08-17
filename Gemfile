@@ -67,3 +67,4 @@ gem "net-imap"
 gem 'devise'
 gem 'kaminari'
 gem 'ransack'
+gem 'acts-as-taggable-on', '~> 9.0'

@@ -24,7 +24,8 @@
               <!--管理者ログイン中ヘッダー-->
               <% if admin_signed_in? %>
                 <li class="nav-item"><%= link_to '会員一覧', admin_members_path, class: 'btn btn-custom-pink btn-custom-white nav-link mr-3' %></li>
-                <li class="nav-item"><%= link_to 'タグ一覧', member_tags, class: 'btn btn-custom-pink btn-custom-white nav-link mr-3' %></li>
+                <li class="nav-item"><%= link_to 'タグ', admin_tags_path, class: 'btn btn-custom-pink btn-custom-white nav-link mr-3' %></li>
+                <li class="nav-item"><%= link_to '記事', admin_facilities_path, class: 'btn btn-custom-pink btn-custom-white nav-link mr-3' %></li>
                 <li class="nav-item"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'btn btn-custom-pink btn-custom-white nav-link mr-3' %></li>
               <!--メンバー用ログイン中ヘッダー-->
               <% elsif member_signed_in? %>
