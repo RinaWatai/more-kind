@@ -1,0 +1,20 @@
+<h4>ユーザー情報を編集する</h4>
+
+<%= form_with(model: @member, url: member_member_path(@member), local: true) do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  
+  <div>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+  
+  <div>
+    <%= f.label :ユーザー画像 %>
+    <%= f.file_field :image, accept: "image/*" %>
+  </div>
+  
+  <%= f.submit "更新" %>
+<% end %>

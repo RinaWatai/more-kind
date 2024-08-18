@@ -8,14 +8,14 @@
   <div>
     <label for="facilities" class="col-sm-2 col-form-label col-form-label-sm"><strong>施設説明</strong></label>
     <div>
-      <%= f.text_field :body, autofocus: true, class: "form-control form-control-sm" %>
+      <%= f.text_area :body, autofocus: true, class: "form-control form-control-sm" %>
     </div>
   </div>
   <div>
     <label for="facilities" class="col-sm-2 col-form-label col-form-label-sm"></label>
     <div>
-      <%= f.submit '保存する', class: "btn btn-primary" %>
+      <%= f.submit '編集する', class: "btn btn-primary" %>
     </div>
   </div>
-<%= link_to '削除する', member_facility_comment_path(@facility, @comment), method: :delete, data: { confirm: '本当に削除しますか?' }, class: 'btn btn-danger' %>
 <% end %>
+<%= link_to '削除する', member_facility_comment_path(@facility, @comment), method: :delete, data: { confirm: '本当に削除しますか?' }, class: 'btn btn-danger' %>

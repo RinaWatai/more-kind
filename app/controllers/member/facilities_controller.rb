@@ -44,7 +44,7 @@ before_action :authenticate_member!, only: [:create, :edit, :update, :destroy]
     private
     
     def facility_params
-      params.require(:facility).permit(:title, :body, :member_id, :tag_list)
+      params.require(:facility).permit(:title, :body, :member_id, :tag_list, :image)
     end
     
 end

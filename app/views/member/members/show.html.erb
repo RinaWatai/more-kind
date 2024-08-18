@@ -1,2 +1,15 @@
-<%= @member.name %>
-<%= @member.email %>
+<table class = "table">
+  <thead>
+    <tr>
+      <%= image_tag @member.image, size: "100x100" %>
+      <th>nickname</th>
+      <th>email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <td><%= @member.name %></td>
+    <td><%= @member.email %></td>
+  </tbody>
+</table>
+
+<%= link_to "ユーザー情報を編集する", edit_member_member_path(@member) %>

@@ -6,4 +6,5 @@ class Member < ApplicationRecord
          
 #アソシエーション
   has_many :facility, dependent: :destroy
+  has_one_attached :image
 end
