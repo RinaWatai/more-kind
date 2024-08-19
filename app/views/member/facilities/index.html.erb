@@ -16,6 +16,7 @@
           <tbody>
             <% @facilities.each do |facility| %>
               <tr>
+                <td><%= image_tag facility.image, size: "100x100" %></td>
                 <td><%= link_to facility.title, member_facility_path(facility) %></td>
                 <td><%= facility.body %></td>
                 <td><%= link_to '編集する', edit_member_facility_path(facility), class: 'btn btn-outline-custom-color' %></td>

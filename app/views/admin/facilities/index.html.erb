@@ -23,7 +23,7 @@
         <td>
           <%= render "admin/facilities/tag_list", tag_list: facility.tag_list %>
       <%= form_with model: @facility, url: admin_facilities_path(@facility) do |f| %>
-        <%= render 'form', f: f %>
+        <%= render 'form', f: f, tag_list: facility.tag_list %>
       <% end %>
         </td>
       </tr>
@@ -31,3 +31,5 @@
   </tbody>
 </table>
 <%= paginate @facilities %>
+
+<%= link_to "tag",new_admin_tag_path %>

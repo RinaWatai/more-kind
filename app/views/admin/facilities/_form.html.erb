@@ -1,8 +1,8 @@
-<div class="mb-2">
-  <%= f.label :tag_list, "tag" %>
-  <%= f.text_field :tag_list, value: f.object.tag_list.join(","), class: "form-control" %>
-</div>
-
-<div class="my-4">
-  <%= f.submit "保存する", class: "btn btn-primary" %>
-</div>
+  <div class="mb-2">
+    <%= f.label :tag_list, "tag" %>
+    <%= f.text_field :tag_list, value: tag_list.join(" "), class: "form-control" %>
+  </div>
+          
+  <div class="my-4">
+    <%= f.submit "保存する", class: "btn btn-primary" %>
+  </div>

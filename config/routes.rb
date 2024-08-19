@@ -17,7 +17,6 @@ Rails.application.routes.draw do
 
   # Member routes
   namespace :member do
-    
     resources :members, only: [:show, :edit, :update, :destroy]
     resources :facilities do
       resources :comments, only: [:create, :edit, :update, :destroy]

@@ -9,6 +9,6 @@ class Admin::FacilitiesController < ApplicationController
   private
 
   def tag_params
-    params.require(:facility).permit(:title, :body, :tag_list)
+    params.require(:facility).permit(:title, :body, :tag_list, :imgage)
   end
 end
