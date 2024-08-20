@@ -10,4 +10,12 @@ class Facility < ApplicationRecord
 
   validates :title,presence:true
   validates :body,presence:true,length:{maximum:200}
+  
+  def self.search(search)
+    unless search.blank?
+      Facility.where('title LIKE(?)', "%#{search}%")
+    else
+      Facility.order('created_at DESC')
+    end
+  end
 end

@@ -9,9 +9,13 @@
 </div>
 
 <div>
-  <%= f.label :施設画像 %>
+  <%= f.label :image, "施設画像" %>
   <%= f.file_field :image, accept: "image/*" %>
 </div>
+
+<%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |b| %>
+  <%= b.label { b.check_box + b.text } %>
+<% end %>
 
 <div class="my-4">
   <%= f.submit "保存する", class: "btn btn-primary" %>

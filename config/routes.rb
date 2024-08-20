@@ -19,6 +19,9 @@ Rails.application.routes.draw do
   namespace :member do
     resources :members, only: [:show, :edit, :update, :destroy]
     resources :facilities do
+      collection do
+        get 'search'
+      end
       resources :comments, only: [:create, :edit, :update, :destroy]
     end
 

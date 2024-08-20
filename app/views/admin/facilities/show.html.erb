@@ -23,18 +23,14 @@
             <th>tag</th>
             <td><%= render 'member/facilities/tag_list', tag_list: @facility.tag_list %></td>
           </tr>
-          <tr>
-            <td><%= link_to '施設内容を編集する', edit_member_facility_path(@facility) %></td>
-          </tr>
         </table>
-
+<button class="btn btn-danger" id="delete-facility">施設を削除</button>
         <!--コメント一覧-->
-<table class = "table">
+<table>
   <thead>
     <tr>
       <th>コメント本文</th>
       <th>メンバー名</th>
-      <th>編集</th>
     </tr>
   </thead>
   <tbody>
@@ -47,29 +43,8 @@
         <tr>
           <td><%= comment.body %></td>
           <td><%= comment.member.name %></td>
-          <td><%= link_to '編集する', edit_member_facility_comment_path(@facility,comment), class: 'btn btn-primary' %></td>
         </tr>
       <% end %>
     <% end %>
   </tbody>
 </table>
-
-
-        <!--コメント機能-->
-        <%= form_with(model: [@comment, @facility], url: member_facility_comments_path(@facility), method: :post, local: true) do |f| %>
-          <strong>コメントする</strong>
-          <div>
-            <%= f.text_field :body, class: "form-control form-control-sm" %>
-          </div>
-          <div>
-            <div>
-              <%= f.submit 'コメントする', class: "btn btn-primary" %>
-            </div>
-          </div>
-        <% end %>
-        
-        
-      </div>
-    </div>
-  </div>
-</div>

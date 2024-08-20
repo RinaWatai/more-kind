@@ -7,7 +7,12 @@
           車いすやベビーカーを利用する方々が快適に過ごせる施設を見つけ、共有するためのサイトです。<br>
           あなたの体験をシェアして、誰もが安心して外出できる社会を一緒に作りましょう。
         </p>
-        
+    <div>
+      <%= form_tag search_member_facilities_path, method: :get do %>
+        <%= text_field_tag :keyword, params[:keyword], placeholder: '施設名で検索' %>
+        <%= submit_tag '検索', name: nil %>
+      <% end %>
+    </div>
       </div>
     </div>
   </div>

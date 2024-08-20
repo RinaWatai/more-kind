@@ -23,6 +23,7 @@ before_action :authenticate_member!, only: [:edit, :create, :destroy, :update]
   
     def edit
       @comment = Comment.find(params[:id])
+      @facility = Facility.find(params[:facility_id])
     end
   
     def update
@@ -44,7 +45,6 @@ before_action :authenticate_member!, only: [:edit, :create, :destroy, :update]
     private
   
     def comment_params
-      params.require(:facility).permit(:body)
+      params.require(:comment).permit(:body, :facility_id)
     end
-
 end
