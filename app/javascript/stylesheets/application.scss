@@ -1,1 +1,17 @@
 @use '~bootstrap/scss/bootstrap';
+@import "facilities";
+
+
+.background-image {
+  background-image: url(../images/top_image.jpg);
+  background-color:rgba(255,255,255,0.8);
+  background-blend-mode:lighten;
+}
+
+.btn-outline {
+  border-color: #c97586;
+}
+
+.header {
+  background-color: #e9dfe5;
+}

@@ -1,15 +1,20 @@
-<table class = "table">
+<table class="table">
   <thead>
     <tr>
-    <%= image_tag @member.image, size: "100x100" %>
+      <% if @member.image.attached? %>
+        <%= image_tag @member.image, size: "100x100" %>
+      <% else %>
+        <%= image_tag 'member_no_image.png', size: "100x100" %>
+      <% end %>
       <th>nickname</th>
       <th>email</th>
     </tr>
   </thead>
   <tbody>
-    <td><%= @member.name %></td>
-    <td><%= @member.email %></td>
-
+    <tr>
+      <td><%= @member.name %></td>
+      <td><%= @member.email %></td>
+    </tr>
   </tbody>
 </table>
 

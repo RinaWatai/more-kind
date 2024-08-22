@@ -1,23 +1,24 @@
-<div class="container mt-4">
-
+<div class="container content">
     <div class="col-12 col-md-9 d-flex flex-column align-items-center justify-content-center welcome-container">
       <div class="facilities mt-4 mb-4" >
         <%= link_to '施設を新規登録する', new_member_facility_path %>
         
-        <table class="table">
-
-          <tbody>
-            <% @facilities.each do |facility| %>
-              <tr>
-                <td><%= image_tag facility.image, size: "100x100" if facility.image.attached? %></td>
-                <td><%= link_to facility.title, member_facility_path(facility) %></td>
-                <td><%= facility.body %></td>
-                <td><%= link_to '編集する', edit_member_facility_path(facility), class: 'btn btn-outline-custom-color' %></td>
-                <td><%= render "member/facilities/tag_list", tag_list: facility.tag_list %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+          <% @facilities.each do |facility| %>
+            <div class="card" >
+              <div class="caSrd-header">
+                <% if facility.image.attached? %>
+                  <%= image_tag facility.image, size: "30x30" %>
+                <% else %>
+                  <%= image_tag 'facility_no_image.png', size: "30x30" %>
+                <% end %>
+                <%= link_to facility.title, member_facility_path(facility) %>
+              </div>
+              <div class="card-body">
+                <div><%= facility.body %></div>
+                <div><%= render "member/facilities/tag_list", tag_list: facility.tag_list %></div>
+              </div>
+            </div>
+          <% end %>
       </div>
     </div>
   </div>

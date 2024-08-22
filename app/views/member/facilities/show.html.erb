@@ -7,7 +7,6 @@
 
   <div class="row">
     <div class="d-flex">
-
       <div>
         <table class="facility_show">
           <tr>
@@ -20,6 +19,13 @@
             <td><%= @facility.body %></td>
           </tr>
           <tr>
+            <th class="table__col1">総合評価</th>
+            <td><%=@all_rating %>： <%= @comments.average(:all_rating).to_f.round(1) %>
+
+            </td>
+
+          </tr>
+          <tr>
             <th>tag</th>
             <td><%= render 'member/facilities/tag_list', tag_list: @facility.tag_list %></td>
           </tr>
@@ -29,46 +35,47 @@
         </table>
 
         <!--コメント一覧-->
-<table class = "table">
-  <thead>
-    <tr>
-      <th>コメント本文</th>
-      <th>メンバー名</th>
-      <th>編集</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% if @comments.nil? %>
-      <tr>
-        <td colspan="3">コメントはありません。</td>
-      </tr>
-    <% else %>
-      <% @comments.each do |comment| %>
-        <tr>
-          <td><%= comment.body %></td>
-          <td><%= comment.member.name %></td>
-          <td><%= link_to '編集する', edit_member_facility_comment_path(@facility,comment), class: 'btn btn-primary' %></td>
-        </tr>
-      <% end %>
-    <% end %>
-  </tbody>
-</table>
-
+        <table class="table">
+          <thead>
+            <tr>
+              <th>コメント本文</th>
+              <th>メンバー名</th>
+              <th>編集</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if @comments.nil? %>
+              <tr>
+                <td colspan="3">コメントはありません。</td>
+              </tr>
+            <% else %>
+              <% @comments.each do |comment| %>
+                <tr>
+                  <td><%= comment.body %></td>
+                  <td><%= comment.member.name %></td>
+                  <td><%= link_to '編集する', edit_member_facility_comment_path(@facility, comment), class: 'btn btn-primary' %></td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
 
         <!--コメント機能-->
-        <%= form_with(model: [@comment, @facility], url: member_facility_comments_path(@facility), method: :post, local: true) do |f| %>
+        <%= form_with(model: [@facility, @comment], url: member_facility_comments_path(@facility), method: :post, local: true) do |f| %>
           <strong>コメントする</strong>
           <div>
             <%= f.text_field :body, class: "form-control form-control-sm" %>
           </div>
+          <td class="table__col1">  
+            <div class="field" id="star"><% f.label :all_rating %></div>
+          </td>
+          </tr>
+          <div class="average-review-rating" data-score=<%= @comments.average(:all_rating) %>></div> 
+            <%= render partial: "member/comments/form_rate", locals: { comment: @comment } %>
           <div>
-            <div>
-              <%= f.submit 'コメントする', class: "btn btn-primary" %>
-            </div>
+            <%= f.submit 'コメントする', class: "btn btn-primary" %>
           </div>
         <% end %>
-        
-        
       </div>
     </div>
   </div>

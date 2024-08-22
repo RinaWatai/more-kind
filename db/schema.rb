@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_08_17_180840) do
+ActiveRecord::Schema.define(version: 2024_08_21_060703) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -57,6 +57,11 @@ ActiveRecord::Schema.define(version: 2024_08_17_180840) do
     t.float "rate", default: 0.0, null: false
     t.integer "member_id", null: false
     t.integer "facility_id", null: false
+    t.float "all_rating", default: 0.0, null: false
+    t.float "rating1", default: 0.0, null: false
+    t.float "rating2", default: 0.0, null: false
+    t.float "rating3", default: 0.0, null: false
+    t.float "rating4", default: 0.0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -78,6 +83,7 @@ ActiveRecord::Schema.define(version: 2024_08_17_180840) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_active", default: true
     t.index ["email"], name: "index_members_on_email", unique: true
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
   end

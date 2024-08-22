@@ -7,12 +7,14 @@ class Admin::FacilitiesController < ApplicationController
   
   def show
     @facility = Facility.find(params[:id])
+    @member = Member.find(params[:id])
+    @comments = @facility.comments
   end
 
   def destroy
     @facility = Facility.find(params[:id])
     @facility.destroy
-    redirect_to admin_facilities_path, notice: '施設が削除されました。'
+    redirect_to admin_facilities_path
   end
   
   private

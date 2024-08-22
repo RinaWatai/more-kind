@@ -34,6 +34,7 @@ Rails.application.routes.draw do
       resources :comments, only: [:destroy]
     end
     resources :tags
+    delete 'tag/delete_all' => "tags#delete_all"
   end
     
     # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

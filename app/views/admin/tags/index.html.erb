@@ -1,0 +1,14 @@
+<div>
+  <%= link_to "tagを新規作成する", new_admin_tag_path %>
+</div>
+<div>
+  <%= link_to "tagを編集する", edit_admin_tag_path(tag.id) %>
+</div>
+
+
+  <%= form_for Tag.new, url: admin_tag_delete_all_path, method: :delete do |f| %>
+    <%= f.collection_check_boxes(:id, @tags, :id, :name) do |b| %>
+      <%= b.label { b.check_box +  b.text } %>
+    <% end %>
+    <%= f.submit "submit" %> 
+  <% end %>

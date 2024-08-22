@@ -1,5 +1,5 @@
-<div class="container mt-4">
-
+<div class="container content">
+<div class="mt-4 background-image">
     <div class="col-12 col-md-9 d-flex flex-column align-items-center justify-content-center welcome-container">
       <div class="welcome-text mt-4 mb-4" >
         <p>
@@ -10,9 +10,10 @@
     <div>
       <%= form_tag search_member_facilities_path, method: :get do %>
         <%= text_field_tag :keyword, params[:keyword], placeholder: '施設名で検索' %>
-        <%= submit_tag '検索', name: nil %>
+        <%= submit_tag '検索', class: "btn btn-outline", name: nil %>
       <% end %>
     </div>
       </div>
     </div>
   </div>
+</div>

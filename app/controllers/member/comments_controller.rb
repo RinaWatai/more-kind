@@ -9,7 +9,6 @@ before_action :authenticate_member!, only: [:edit, :create, :destroy, :update]
       @comments = Comment.page(params[:page]).per(10)
     end
   
-  
     def create
       @comment = Comment.new(comment_params)
       @comment.member_id = current_member.id
@@ -17,7 +16,7 @@ before_action :authenticate_member!, only: [:edit, :create, :destroy, :update]
       if @comment.save
         redirect_to member_facility_path(@comment.facility_id), notice: 'コメントが作成されました。'
       else
-        render :new, alert: 'コメントの作成に失敗しました。'
+        render :index
       end
     end
   
@@ -45,6 +44,6 @@ before_action :authenticate_member!, only: [:edit, :create, :destroy, :update]
     private
   
     def comment_params
-      params.require(:comment).permit(:body, :facility_id)
+      params.require(:comment).permit(:body, :facility_id, :all_rating, :rating1, :rating2, :rating3, :rating4)
     end
 end
