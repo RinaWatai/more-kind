@@ -12,7 +12,7 @@ class Admin::TagsController < ApplicationController
     existing_tag = Tag.find_by(name: tag.name)
     if existing_tag.nil?
       if tag.save
-        redirect_to admin_facilities_path
+        redirect_to admin_tags_path
       else
         redirect_to admin_tags_path
       end
@@ -35,11 +35,7 @@ class Admin::TagsController < ApplicationController
     tag_ids.delete_if(&:empty?).each do |tag_id|
       Tag.find(tag_id).destroy
     end
-    
     redirect_to admin_tags_path
-  end
-  
-  def edit
   end
   
 end

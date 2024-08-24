@@ -35,6 +35,8 @@ Rails.application.routes.draw do
     end
     resources :tags
     delete 'tag/delete_all' => "tags#delete_all"
+    get 'users/confirm_withdraw' => 'users#confirm_withdraw', as: :users_confirm_withdraw
+    patch 'users/withdraw' => 'users#withdraw'
   end
     
     # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

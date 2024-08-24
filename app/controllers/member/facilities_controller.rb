@@ -14,7 +14,6 @@ class Member::FacilitiesController < ApplicationController
       @facility = Facility.find(params[:id])
       @comment = Comment.new
       @comments = @facility.comments
-      @member = Member.find(params[:id])
     end
     
     def create

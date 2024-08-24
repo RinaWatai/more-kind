@@ -13,10 +13,10 @@ before_action :authenticate_member!, only: [:edit, :create, :destroy, :update]
       @comment = Comment.new(comment_params)
       @comment.member_id = current_member.id
       @comment.facility_id = params[:facility_id]
-      if @comment.save
-        redirect_to member_facility_path(@comment.facility_id), notice: 'コメントが作成されました。'
+      if @comment.save!
+        redirect_to member_facility_path(@comment.facility_id)
       else
-        render :index
+        redirect_to member_facilities_path
       end
     end
   
@@ -28,9 +28,9 @@ before_action :authenticate_member!, only: [:edit, :create, :destroy, :update]
     def update
       @comment = Comment.find(params[:id])
       if @comment.update(comment_params)
-        redirect_to member_facility_path(@comment.facility_id), notice: 'コメントが更新されました。'
+        redirect_to member_facility_path(@comment.facility_id)
       else
-        render :edit, alert: 'コメントの更新に失敗しました。'
+        render :edit
       end
     end
   
@@ -38,12 +38,12 @@ before_action :authenticate_member!, only: [:edit, :create, :destroy, :update]
       @comment = Comment.find(params[:id])
       facility_id = @comment.facility_id
       @comment.destroy
-      redirect_to member_facility_path(facility_id), notice: 'コメントが削除されました。'
+      redirect_to member_facility_path(facility_id)
     end
   
     private
   
     def comment_params
-      params.require(:comment).permit(:body, :facility_id, :all_rating, :rating1, :rating2, :rating3, :rating4)
+      params.require(:comment).permit(:body, :facility_id, :rate)
     end
 end

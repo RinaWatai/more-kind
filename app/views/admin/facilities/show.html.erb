@@ -9,10 +9,11 @@
     <div class="d-flex">
 
       <div>
+      <%= image_tag @facility.image, size: "100x100" if @facility.image.attached? %>
         <table class="table facility_show">
           
           <tr>
-            <td><%= image_tag @facility.image, size: "100x100" if @facility.image.attached? %></td>
+
             <th>施設名</th>
             <td><%= @facility.title %></td>
           </tr>
@@ -25,13 +26,15 @@
             <td><%= render 'member/facilities/tag_list', tag_list: @facility.tag_list %></td>
           </tr>
         </table>
-<button class="btn btn-danger" id="delete-facility" data-url="<%= admin_facility_path(@facility) %>">施設を削除</button>
+
+<%= link_to "施設を削除", admin_facility_path(@facility), method: :delete, data: {confirm: "削除しますか？"}, class: "btn btn-danger" %>
         <!--コメント一覧-->
-<table>
+<table class = "table">
   <thead>
     <tr>
-      <th>コメント本文</th>
+      <th>コメント</th>
       <th>メンバー名</th>
+      <th>評価</th>
     </tr>
   </thead>
   <tbody>
@@ -44,6 +47,11 @@
         <tr>
           <td><%= comment.body %></td>
           <td><%= comment.member.name %></td>
+          <td>
+            <div id="review-rating<%= comment.id %>" class="review-rating" data-score=<%= comment.rate %>></div>
+            <%= render partial: "member/comments/show_rate", locals: { comment: comment } %>
+          </td>
+          <td><%= link_to "コメントを削除", admin_facility_comment_path(@facility,comment), method: :delete, data: {confirm: "削除しますか？"}, class: "btn btn-danger" %></td>
         </tr>
       <% end %>
     <% end %>

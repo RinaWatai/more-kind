@@ -1,11 +1,5 @@
-<div class="starrate">
-<%# 平均点を算出し、round関数で切り上げ %>
-<%=@all_rating %>：<%= @comments.average(:all_rating).to_f.round(1) %>
-<%# 評価数を星に置き換える %>
-<div class="average-review-rating" data-score=<%= @comments.average(:all_rating) %>></div>
-<%# jquery発火イベントを記載%>
 <script>
-  $('.average-review-rating').raty({
+  $('#review-rating<%= comment.id %>').raty({
     readOnly: true,
     starOn: "<%= asset_path('star-on.png') %>",
     starOff: "<%= asset_path('star-off.png') %>",
@@ -15,6 +9,3 @@
     }
   });
 </script>
-<br>
-<%# 同様に、rating1なども記載する%>
-</div>

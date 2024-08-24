@@ -20,9 +20,7 @@
           </tr>
           <tr>
             <th class="table__col1">総合評価</th>
-            <td><%=@all_rating %>： <%= @comments.average(:all_rating).to_f.round(1) %>
-
-            </td>
+            <td><%= @comments.average(:rate).to_f.round(1) %></td>
 
           </tr>
           <tr>
@@ -40,7 +38,8 @@
             <tr>
               <th>コメント本文</th>
               <th>メンバー名</th>
-              <th>編集</th>
+              <th>評価</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -53,7 +52,17 @@
                 <tr>
                   <td><%= comment.body %></td>
                   <td><%= comment.member.name %></td>
-                  <td><%= link_to '編集する', edit_member_facility_comment_path(@facility, comment), class: 'btn btn-primary' %></td>
+                  
+                  <td>
+                    <div id="review-rating<%= comment.id %>" class="review-rating" data-score=<%= comment.rate %>></div>
+                    <%= render partial: "member/comments/show_rate", locals: { comment: comment } %>
+                  </td>
+                  
+                  <% if current_member == @comment.member %>
+                    <td><%= link_to '編集する', edit_member_facility_comment_path(@facility, @comment), class: 'btn btn-primary' %></td>
+                  <% else %>
+                    <td></td>
+                  <% end %>
                 </tr>
               <% end %>
             <% end %>
@@ -70,7 +79,7 @@
             <div class="field" id="star"><% f.label :all_rating %></div>
           </td>
           </tr>
-          <div class="average-review-rating" data-score=<%= @comments.average(:all_rating) %>></div> 
+          <div class="average-review-rating" data-score=<%= @comments.average(:rate) %>></div> 
             <%= render partial: "member/comments/form_rate", locals: { comment: @comment } %>
           <div>
             <%= f.submit 'コメントする', class: "btn btn-primary" %>

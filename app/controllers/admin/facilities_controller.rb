@@ -7,7 +7,6 @@ class Admin::FacilitiesController < ApplicationController
   
   def show
     @facility = Facility.find(params[:id])
-    @member = Member.find(params[:id])
     @comments = @facility.comments
   end
 

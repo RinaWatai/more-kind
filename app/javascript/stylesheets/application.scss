@@ -1,6 +1,10 @@
 @use '~bootstrap/scss/bootstrap';
 @import "facilities";
 
+.header {
+  background-color: #e9dfe5;
+  width: auto;
+}
 
 .background-image {
   background-image: url(../images/top_image.jpg);
@@ -10,8 +14,5 @@
 
 .btn-outline {
   border-color: #c97586;
-}
-
-.header {
-  background-color: #e9dfe5;
+  color: #c97586;
 }

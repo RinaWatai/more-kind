@@ -1,4 +1,4 @@
 class Tag < ApplicationRecord
 #アソシエーション
-  #has_many :facility_tag, dependent: :destroy
+  has_many :facilities, dependent: :destroy
 end
