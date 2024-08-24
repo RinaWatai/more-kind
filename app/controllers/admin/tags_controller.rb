@@ -33,6 +33,7 @@ class Admin::TagsController < ApplicationController
   def delete_all
     tag_ids = params[:tag][:id]
     tag_ids.delete_if(&:empty?).each do |tag_id|
+      #byebug
       Tag.find(tag_id).destroy
     end
     redirect_to admin_tags_path
