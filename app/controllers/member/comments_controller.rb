@@ -9,16 +9,17 @@ before_action :authenticate_member!, only: [:edit, :create, :destroy, :update]
       @comments = Comment.page(params[:page]).per(10)
     end
   
-    def create
-      @comment = Comment.new(comment_params)
-      @comment.member_id = current_member.id
-      @comment.facility_id = params[:facility_id]
-      if @comment.save!
-        redirect_to member_facility_path(@comment.facility_id)
-      else
-        redirect_to member_facilities_path
-      end
+  def create
+    @comment = Comment.new(comment_params)
+    @comment.member_id = current_member.id
+    @comment.facility_id = params[:facility_id]
+    if @comment.save
+      redirect_to member_facility_path(@comment.facility_id)
+    else
+      flash[:alert] = "既に評価済みです。"
+      redirect_to member_facility_path(@comment.facility_id)
     end
+  end
   
     def edit
       @comment = Comment.find(params[:id])

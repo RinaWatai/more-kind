@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   root 'homes#top' # ルートを Member::HomesController の top アクションに設定
   get '/about', to: 'homes#about'
   
-  # 顧客用
-  # URL /customers/sign_in ...
+  # メンバー用
+  # URL /members/sign_in ...
   devise_for :members, skip: [:passwords], controllers: {
     registrations: "member/registrations",
     sessions: 'member/sessions'
@@ -17,7 +17,10 @@ Rails.application.routes.draw do
 
   # Member routes
   namespace :member do
-    resources :members, only: [:show, :edit, :update, :destroy]
+    resources :members, only: [:show, :edit, :update, :destroy] do
+      get 'members/confirm_withdraw' => 'members#confirm_withdraw', as: :members_confirm_withdraw
+      patch 'members/withdraw' => 'members#withdraw'
+    end
     resources :facilities do
       collection do
         get 'search'

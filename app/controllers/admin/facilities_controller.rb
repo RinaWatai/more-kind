@@ -7,7 +7,7 @@ class Admin::FacilitiesController < ApplicationController
   
   def show
     @facility = Facility.find(params[:id])
-    @comments = @facility.comments
+    @comments = Comment.includes(:member).where(facility: @facility).where(members: { is_deleted: false})
   end
 
   def destroy

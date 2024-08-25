@@ -3,6 +3,8 @@ class Comment < ApplicationRecord
   belongs_to :member
   belongs_to :facility
   
+  validates :member_id, uniqueness: { scope: :facility_id }
+  
 # ★評価
   validates :rate, numericality: {
   less_than_or_equal_to: 5.0,

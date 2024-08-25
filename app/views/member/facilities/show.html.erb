@@ -57,8 +57,7 @@
                     <div id="review-rating<%= comment.id %>" class="review-rating" data-score=<%= comment.rate %>></div>
                     <%= render partial: "member/comments/show_rate", locals: { comment: comment } %>
                   </td>
-                  
-                  <% if current_member == @comment.member %>
+                  <% if current_member && current_member.id == @comment.member_id %>
                     <td><%= link_to '編集する', edit_member_facility_comment_path(@facility, @comment), class: 'btn btn-primary' %></td>
                   <% else %>
                     <td></td>
@@ -85,6 +84,11 @@
             <%= f.submit 'コメントする', class: "btn btn-primary" %>
           </div>
         <% end %>
+          <% if flash[:alert] %>
+            <div class="alert">
+              <%= flash[:alert] %>
+            </div>
+          <% end %>
       </div>
     </div>
   </div>

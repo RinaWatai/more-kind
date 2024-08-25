@@ -5,8 +5,9 @@ class Member::MembersController < ApplicationController
   
   def show
     @member = current_member
-    @member = Member.find(params[:id])
-    @comments = @member.comments
+    #@member = Member.find(params[:id])
+    facility_ids = current_member.comments.pluck(:facility_id).uniq
+    @facilities = Facility.where(id: facility_ids)
   end
   
   def new
@@ -40,6 +41,13 @@ class Member::MembersController < ApplicationController
     @member = Member.find(params[:id])
     @member.destroy
     redirect_to members_path
+  end
+  
+  def confirm_withdraw
+    @member = current_member
+    @member.update(is_deleted: true, name: "退会済み")
+    reset_session
+    redirect_to root_path, notice: "ご利用ありがとうございました"
   end
   
   private

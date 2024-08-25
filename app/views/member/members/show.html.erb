@@ -19,3 +19,32 @@
 </table>
 
 <%= link_to "ユーザー情報を編集する", edit_member_member_path(@member) %>
+
+ <h5>評価した評価した施設一覧</h5>
+  <% if @facilities.empty? %>
+    <p>評価した施設はありません。</p>
+  <% else %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>施設名</th>
+          <th>施設説明</th>
+          <th>総合評価</th>
+          <th>あなたの評価</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @facilities.each do |facility| %>
+          <tr>
+            <td><%= link_to facility.title, member_facility_path(facility) %></td>
+            <td><%= facility.body %></td>
+            <td><%= facility.comments.average(:rate).to_f.round(1) %></td>
+            <td>
+              <div id="review-rating<%= facility.comments.first.id %>" class="review-rating" data-score=<%= facility.comments.first.rate %>></div>
+              <%= render partial: "member/comments/show_rate", locals: { comment: facility.comments.first } %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
