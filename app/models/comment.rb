@@ -3,6 +3,7 @@ class Comment < ApplicationRecord
   belongs_to :member
   belongs_to :facility
   
+#facilityにたいして1commentしかできない制限
   validates :member_id, uniqueness: { scope: :facility_id }
   
 # ★評価

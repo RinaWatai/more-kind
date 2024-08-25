@@ -1,4 +1,5 @@
 <script>
+  $('#review-rating<%= comment.id %>').empty();
   $('#review-rating<%= comment.id %>').raty({
     readOnly: true,
     starOn: "<%= asset_path('star-on.png') %>",
