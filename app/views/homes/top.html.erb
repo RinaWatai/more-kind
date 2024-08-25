@@ -23,7 +23,7 @@
         <%= image_tag 'facility_no_image.png', size: "30x30" %>
       <% end %>
       <%= link_to facility.title, member_facility_path(facility) %>
-      <span>  評価: <%= facility.average_rate.to_f.round(1) %></span> <!-- 総合評価を表示 -->
+      <span>  評価: <%= facility.average_rate.to_f.round(1) %></span>
     </div>
     <div class="card-body">
       <div><%= facility.body %></div>
