@@ -54,7 +54,7 @@ class Member::FacilitiesController < ApplicationController
     private
     
     def facility_params
-      params.require(:facility).permit(:title, :body, :member_id, :image)
+      params.require(:facility).permit(:title, :body, :member_id, :image, :postcode, :prefecture_code, :address_city, :address_street, :address_building)
     end
 
 end
