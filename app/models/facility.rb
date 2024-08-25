@@ -10,7 +10,8 @@ class Facility < ApplicationRecord
 
   validates :title,presence:true
   validates :body,presence:true,length:{maximum:200}
-  
+
+  #検索機能
   def self.search(search)
     unless search.blank?
       Facility.where('title LIKE(?)', "%#{search}%")
@@ -18,4 +19,10 @@ class Facility < ApplicationRecord
       Facility.order('created_at DESC')
     end
   end
+  
+  def average_rating
+    return 0 if comments.empty?
+    comments.average(:rating).to_f
+  end
+  
 end

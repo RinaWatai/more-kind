@@ -13,6 +13,24 @@
           <%= submit_tag '検索', class: "btn btn-outline", name: nil %>
         <% end %>
     </div>
+    
+<% @facilities_sorted.each do |facility| %>
+  <div class="card">
+    <div class="card-header">
+      <% if facility.image.attached? %>
+        <%= image_tag facility.image, size: "30x30" %>
+      <% else %>
+        <%= image_tag 'facility_no_image.png', size: "30x30" %>
+      <% end %>
+      <%= link_to facility.title, member_facility_path(facility) %>
+      <span>  評価: <%= facility.average_rate.to_f.round(1) %></span> <!-- 総合評価を表示 -->
+    </div>
+    <div class="card-body">
+      <div><%= facility.body %></div>
+      <div class="tag"><%= render "member/facilities/tag_list", tag_list: facility.tag_list %></div>
+    </div>
+  </div>
+<% end %>
       </div>
     </div>
   </div>

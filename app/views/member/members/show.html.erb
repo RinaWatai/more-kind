@@ -40,8 +40,10 @@
             <td><%= facility.body %></td>
             <td><%= facility.comments.average(:rate).to_f.round(1) %></td>
             <td>
-              <div id="review-rating<%= facility.comments.first.id %>" class="review-rating" data-score=<%= facility.comments.first.rate %>></div>
-              <%= render partial: "member/comments/show_rate", locals: { comment: facility.comments.first } %>
+              <% facility.comments.where(member_id: current_member.id).each do |comment| %>
+                <div id="review-rating<%= comment.id %>" class="review-rating" data-score=<%= comment.rate %>></div>
+                <%= render partial: "member/comments/show_rate", locals: { comment: comment } %>
+              <% end %>
             </td>
           </tr>
         <% end %>
