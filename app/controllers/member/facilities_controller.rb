@@ -8,8 +8,11 @@ class Member::FacilitiesController < ApplicationController
       @facilities = Facility.all
       @facilities = @facilities.tagged_with(params[:tag]) if params[:tag].present?
       @facilities = @facilities.page(params[:page]).per(10)
+      @facilities = @facilities.latest if params[:latest]
+      @facilities = @facilities.old if params[:old]
+      @facilities = @facilities.high_rating if params[:star_count]
     end
-    
+      
     def show
       @facility = Facility.find(params[:id])
       @comment = Comment.new

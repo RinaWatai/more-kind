@@ -9,5 +9,5 @@ class Comment < ApplicationRecord
 # ★評価
   validates :rate, numericality: {
   less_than_or_equal_to: 5.0,
-  greater_than_or_equal_to: 1.0 }, presence: true
+  greater_than_or_equal_to: 0.5 }, presence: true
 end

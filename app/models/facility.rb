@@ -20,9 +20,15 @@ class Facility < ApplicationRecord
     end
   end
   
+  scope :latest, -> {order(created_at: :desc)}
+  scope :old, -> {order(created_at: :asc)}
+  scope :high_rating, -> {
+    left_joins(:comments).group(:id).order('AVG(comments.rate) DESC')
+  }
+
   def average_rating
     return 0 if comments.empty?
-    comments.average(:rating).to_f
+    comments.average(:rate).to_f
   end
   
 end
