@@ -22,55 +22,61 @@
 
     <!-- 1位の施設を表示 -->
 <div class="top-ranking">
-  <%= link_to member_facility_path(top_facility), class: 'card' do %>
-    <div class="card-header d-block text-dark">
-      <div class="icon-and-info">
-        <i class="fa-solid fa-medal gold-medal"></i>
-        <div class="info">
-          <div class="facility-title"><%= top_facility.title %></div>
-          <div>評価: <%= top_facility.average_rate.to_f.round(1) %></div>
+  <% if top_facility.present? %>
+    <%= link_to member_facility_path(top_facility), class: 'card' do %>
+      <div class="card-header d-block text-dark">
+        <div class="icon-and-info">
+          <i class="fa-solid fa-medal gold-medal"></i>
+          <div class="info">
+            <div class="facility-title"><%= top_facility.title %></div>
+            <div>評価: <%= top_facility.average_rate.to_f.round(1) %></div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="card-body">
-      <div class="facility-address">
-        〒<%= top_facility.postcode %><br>
-        <%= top_facility.prefecture_name %> <%= top_facility.address_city %><br>
-        <%= top_facility.address_street %> <%= top_facility.address_building %>
+      <div class="card-body">
+        <div class="facility-address">
+          〒<%= top_facility.postcode %><br>
+          <%= top_facility.prefecture_name %> <%= top_facility.address_city %><br>
+          <%= top_facility.address_street %> <%= top_facility.address_building %>
+        </div>
       </div>
-    </div>
+    <% end %>
+  <% else %>
+    <p>トップランクの施設情報がありません。</p>
   <% end %>
 </div>
 
 <!-- 2位と3位の施設を横並びで表示 -->
 <div class="other-rankings">
-  <% other_facilities.each_with_index do |facility, index| %>
-    <% break if index >= 2 %> <!-- 2位と3位のみ表示 -->
-    <div class="card">
-      <%= link_to member_facility_path(facility), class: 'card', style: 'text-decoration: none; color: inherit;' do %>
-        <div class="card-header d-block text-dark">
-          <div class="icon-and-info">
-            <% if index == 0 %>
-              <i class="fa-solid fa-medal silver-medal"></i>
-            <% elsif index == 1 %>
-              <i class="fa-solid fa-medal bronze-medal"></i>
-            <% end %>
-            <div class="info">
-              <div class="facility-title"><%= facility.title %></div>
-              <div>評価: <%= facility.average_rate.to_f.round(1) %></div>
+  <% if other_facilities.present? && other_facilities.any? %>
+    <% other_facilities.each_with_index do |facility, index| %>
+      <% break if index >= 2 %> <!-- 2位と3位のみ表示 -->
+      <div class="card">
+        <%= link_to member_facility_path(facility), class: 'card', style: 'text-decoration: none; color: inherit;' do %>
+          <div class="card-header d-block text-dark">
+            <div class="icon-and-info">
+              <% if index == 0 %>
+                <i class="fa-solid fa-medal silver-medal"></i>
+              <% elsif index == 1 %>
+                <i class="fa-solid fa-medal bronze-medal"></i>
+              <% end %>
+              <div class="info">
+                <div class="facility-title"><%= facility.title %></div>
+                <div>評価: <%= facility.average_rate.to_f.round(1) %></div>
+              </div>
             </div>
           </div>
-        </div>
-      <% end %>
-      <div class="card-body">
-        <div class="facility-address">
-          〒<%= facility.postcode %><br>
-          <%= facility.prefecture_name %> <%= facility.address_city %><br>
-          <%= facility.address_street %> <%= facility.address_building %>
+        <% end %>
+        <div class="card-body">
+          <div class="facility-address">
+            〒<%= facility.postcode %><br>
+            <%= facility.prefecture_name %> <%= facility.address_city %><br>
+            <%= facility.address_street %> <%= facility.address_building %>
+          </div>
         </div>
       </div>
-    </div>
+    <% end %>
+  <% else %>
+    <p>他のランクの施設情報がありません。</p>
   <% end %>
-</div>
-  </div>
 </div>
