@@ -1,18 +1,83 @@
 @use '~bootstrap/scss/bootstrap';
 @import "facilities";
+@import "homes";
+
+
+:root {
+  --primary-color: #d3381c;  /* 可愛らしいピンク色 */
+  --text-color: #333;        /* テキストの色 */
+  --background-color: #fff;  /* 背景色 */
+  --hover-color: #d3381c;    /* ホバー時の色 */
+}
+
+a {
+  text-decoration: none; /* デフォルトの下線を削除 */
+  color: inherit; /* テキストの色を親要素から継承 */
+}
+
+a:hover, a:focus, a:active {
+  text-decoration: none; /* ホバー、フォーカス、クリック時も下線を削除 */
+  color: #d3381c; /* ホバー時のリンク色（例） */
+  transition: color 0.3s ease; /* スムーズな色変更のためのトランジション */
+}
+
+.container {
+  padding: 20px;
+}
 
 .header {
-  background-color: #e9dfe5;
-  width: auto;
+  background-color: #fdeff2;
+  margin-bottom: 100px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  transition: transform 0.3s ease-in-out; /* スムーズな表示/非表示のためのトランジション */
+}
+
+.header.hidden {
+  transform: translateY(-100%); /* ヘッダーを上に隠す */
 }
 
 .background-image {
-  background-image: url(../images/top_image.jpg);
-  background-color:rgba(255,255,255,0.8);
-  background-blend-mode:lighten;
+  background-image: url('../images/top_image.jpg');
+  background-color: rgba(255, 255, 255, 0.8);
+  background-blend-mode: lighten;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 100vh;
+  padding: 20px;
+  background-attachment: fixed;
 }
 
-.btn-outline {
-  border-color: #c97586;
-  color: #c97586;
+.btn-border {
+  border: 2px solid #d3381c;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.9);
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  color: #d3381c;
+}
+
+.btn-border:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  content: '';
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  background: #d3381c;  /* 初期状態では暗い色(#d3381c)に設定しておく */
+}
+
+.btn-border:hover {
+  color: #fff;
+  background: #d3381c;
+}
+
+.btn-border:hover:before {
+  background: #fff; /* カーソルを合わせた時にバーの色を白色(#fff)に変更 */
 }

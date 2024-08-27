@@ -19,17 +19,17 @@ class Member::FacilitiesController < ApplicationController
       @comments = Comment.includes(:member).where(facility: @facility).where(members: { is_deleted: false})
     end
     
-    def create
-      @facility = Facility.new(facility_params)
-      @facility.tag_list = Tag.where(id: params[:facility][:tag_ids]).pluck(:name).join(',')
-      @facility.member = current_member
-      @facility.save
-      redirect_to member_facility_path(@facility)
+  def create
+    @facility = Facility.new(facility_params)
+    @facility.tag_list = Tag.where(id: params[:facility][:tag_ids]).pluck(:name).join(',')
+    @facility.member = current_member
+  
+    if @facility.save
+      redirect_to member_facility_path(@facility.id)
+    else
+      render :new
     end
-    
-    def edit
-      @facility = Facility.find(params[:id])
-    end
+  end
     
     def update
       @facility = Facility.find(params[:id])
@@ -39,6 +39,10 @@ class Member::FacilitiesController < ApplicationController
       else
         render :edit
       end
+    end
+    
+    def edit
+      @facility = Facility.find(params[:id])
     end
     
     def destroy

@@ -10,7 +10,13 @@
       <div>
         <table class="facility_show">
           <tr>
-            <td><%= image_tag @facility.image, size: "100x100" if @facility.image.attached? %></td>
+            <% if @facility.image.attached? %>
+              <%= image_tag @facility.image, size: "100x100" %>
+            <% else %>
+              <%= image_tag 'facility_no_image.png', size: "100x100" %>
+            <% end %>
+          </tr>
+          <tr>
             <th>施設名</th>
             <td><%= @facility.title %></td>
           </tr>
@@ -36,34 +42,34 @@
         <table class="table">
           <thead>
             <tr>
-              <th>コメント本文</th>
-              <th>メンバー名</th>
               <th>評価</th>
+              <th>名前</th>
+              <th>コメント</th>
+              
               <th></th>
             </tr>
           </thead>
           <tbody>
-            <% if @comments.nil? %>
+            <% if @comments.nil? || @comments.empty? %>
               <tr>
-                <td colspan="3">コメントはありません。</td>
+                <td colspan="3">未評価の施設です</td>
               </tr>
             <% else %>
               <% @comments.each do |comment| %>
-                <tr>
-                  <td><%= comment.body %></td>
-                  <td><%= comment.member.name %></td>
-                  
-                  <td>
-                    <div id="review-rating<%= comment.id %>" class="review-rating" data-score=<%= comment.rate %>></div>
-                    <%= render partial: "member/comments/show_rate", locals: { comment: comment } %>
-                  </td>
-                  <% if current_member && current_member.id == @comment.member_id %>
-                    <td><%= link_to '編集する', edit_member_facility_comment_path(@facility, @comment), class: 'btn btn-primary' %></td>
-                  <% else %>
-                    <td></td>
-                  <% end %>
-                </tr>
-              <% end %>
+  <tr>
+    <td>
+      <div id="review-rating<%= comment.id %>" class="review-rating" data-score=<%= comment.rate %>></div>
+      <%= render partial: "member/comments/show_rate", locals: { comment: comment } %>
+    </td>
+    <td><%= comment.member.name %></td>
+    <td><%= comment.body %></td>
+    <% if current_member && current_member.id == comment.member_id %>
+      <td><%= link_to '編集する', edit_member_facility_comment_path(@facility, comment), class: 'btn btn-primary' %></td>
+    <% else %>
+      <td></td>
+    <% end %>
+  </tr>
+<% end %>
             <% end %>
           </tbody>
         </table>
@@ -90,6 +96,15 @@
             </div>
           <% end %>
       </div>
+          <div>
+      〒<%= @facility.postcode %>
+        <%= @facility.prefecture_name %>
+        <%= @facility.address_city %>
+        <%= @facility.address_street %>
+        <%= @facility.address_building %>
     </div>
+    </div>
+
+    <%= render 'member/facilities/map' %>
   </div>
 </div>

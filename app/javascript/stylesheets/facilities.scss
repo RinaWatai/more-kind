@@ -1,9 +1,203 @@
-.card {
-  margin-top: 15px;
-  margin-bottom: 15px;
-  width: 100%; /* 幅を100%に指定する例 */
+.facilities-sort {
+  margin-bottom: 20px;
+  margin-top: 100px;
+  display: flex;
+  justify-content: space-between; /* 左右に配置 */
+  align-items: center;
 }
 
-.tags {
-  color: #c97586; /* タグの色を指定する */
+.button-wrapper {
+  margin-right: auto; /* 左寄せ */
+}
+
+.sorting-options {
+  margin-left: auto; /* 右寄せ */
+}
+
+.sort-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  margin-right: 10px;
+  transition: color 0.3s ease;  /* スムーズな色変更のためのトランジション */
+}
+
+.sort-link:hover, .sort-link:focus, .sort-link:active {
+  color: var(--hover-color);   /* ホバー時もピンク系の色に */
+  text-decoration: underline;  /* 強調するための下線 */
+}
+
+.card-index-link {
+  text-decoration: none; /* デフォルトのリンクスタイルを削除 */
+  color: inherit;        /* リンクのテキスト色を継承 */
+  display: block;        /* リンクをブロック要素に */
+}
+
+.card-index {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin: 20px 0;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.98); /* 通常時の背景色 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.card-index::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../images/card.jpg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0; /* 初期状態では背景画像を非表示 */
+  transition: opacity 0.3s ease; /* 背景画像の表示をスムーズに */
+  z-index: 0;
+  border-radius: 5px;
+}
+
+.card-index:hover::before {
+  opacity: 0.15; /* ホバー時に背景画像をさらに薄く表示 */
+}
+
+.card-index > * {
+  position: relative;
+  z-index: 1;
+}
+
+.card-index:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.card-index-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  background-color: rgba(253, 239, 242, 0.8);
+  padding: 10px;
+}
+
+.facility-image {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.facility-info {
+  flex-grow: 1;
+}
+
+.facility-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.rating {
+  font-size: 14px;
+  color: #888;
+  margin-top: 5px;
+}
+
+.stars {
+  display: inline-block;
+  margin-left: 5px;
+}
+
+.star-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 2px;
+}
+
+.card-index-body {
+  margin-top: 10px;
+}
+
+.facility-description {
+  color: #555;
+}
+
+
+
+
+
+.user-info {
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.user-info-content {
+  display: flex;
+  align-items: center;
+}
+
+.user-image-container {
+  margin-right: 20px;
+}
+
+.user-image {
+  border-radius: 50%;
+  border: 2px solid #ddd;
+}
+
+.user-details {
+  font-size: 1.1em;
+}
+
+.user-details p {
+  margin: 5px 0;
+}
+
+.user-edit-btn {
+  background-color: #ff7f7f;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: #fff;
+  text-decoration: none;
+}
+
+/* 評価した施設一覧セクション */
+.rated-facilities {
+  background-color: #fff3e6;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.facility-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.facility-table th, .facility-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.facility-title {
+  font-weight: bold;
+  color: #ff7f7f;
+  text-decoration: none;
+}
+
+.facility-description {
+  color: #666;
+  font-size: 0.9em;
+}
+
+.facility-rating {
+  text-align: center;
+}
+
+.stars {
+  color: #ffa500;
+  margin-right: 5px;
 }

@@ -1,4 +1,6 @@
 class Admin::FacilitiesController < ApplicationController
+  before_action :authenticate_admin!
+  
   def index
     @facilities = Facility.all
     @facilities = @facilities.tagged_with(params[:tag]) if params[:tag].present?

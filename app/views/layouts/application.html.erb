@@ -10,18 +10,17 @@
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    
+    <script type="text/javascript" src="//jpostal-1006.appspot.com/jquery.jpostal.js"></script>
+    <script src="https://kit.fontawesome.com/fff1710ae4.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
-    <div class="container header">
-      <header>
+      <header class="header">
         <nav class="navbar navbar-expand-lg">
           <%= link_to root_path do %>
             <%= image_tag "logo.png", size: "100x100" %>
           <% end %>
           <div class="collapse navbar-collapse">
-
             <ul class="navbar-nav ml-auto">
               <!--管理者ログイン中ヘッダー-->
               <% if admin_signed_in? %>
@@ -35,7 +34,6 @@
                 <li class="nav-item"><%= link_to 'マイページ', member_member_path(current_member), class: 'btn btn-custom-pink btn-custom-white nav-link mr-3' %></li>
                 <li class="nav-item"><%= link_to '施設一覧', member_facilities_path, class: 'btn btn-custom-pink btn-custom-white nav-link mr-3' %></li>
                 <li class="nav-item"><%= link_to 'ログアウト', destroy_member_session_path, method: :delete, class: 'btn btn-custom-pink btn-custom-white nav-link mr-3' %></li>
-                
               <!--未ログイン時ヘッダー-->
               <% else %>
                 <li class="nav-item"><%= link_to 'About', about_path, class: 'btn btn-custom-pink btn-custom-white nav-link mr-3' %></li>
@@ -46,12 +44,35 @@
           </div>
         </nav>
       </header>
+
+      <div class="background-image"> <!-- ここに新しいラッパーを追加 -->
         <% if flash[:notice] %>
-        <div class="notice">
-        <%= flash[:notice] %>
-        </div>
+          <div class="notice">
+            <%= flash[:notice] %>
+          </div>
         <% end %>
-      <%= yield %>
-    </div>
+        <%= yield %> <!-- ビューのコンテンツ -->
+      </div>
+      
+  <script>
+  document.addEventListener('turbolinks:load', function() {
+    var header = document.querySelector('.header');
+    var lastScrollTop = 0;
+  
+    window.addEventListener('scroll', function() {
+      var currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+  
+      if (currentScroll > lastScrollTop) {
+        // 下にスクロール
+        header.classList.add('hidden');
+      } else {
+        // 上にスクロール
+        header.classList.remove('hidden');
+      }
+  
+      lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // ScrollTopが0以下の時も0に設定
+    });
+  });
+  </script>
   </body>
 </html>

@@ -1,4 +1,5 @@
 class Admin::TagsController < ApplicationController
+  before_action :authenticate_admin!
   def new
     @tag = Tag.new
   end
@@ -33,7 +34,10 @@ class Admin::TagsController < ApplicationController
   def delete_all
     tag_ids = params[:tag][:id]
     tag_ids.delete_if(&:empty?).each do |tag_id|
-      #byebug
+      Facility.all.each do |f|
+        f.tag_list.remove(Tag.find(tag_id).name)
+        f.save
+      end
       Tag.find(tag_id).destroy
     end
     redirect_to admin_tags_path

@@ -1,7 +1,7 @@
 <div class="container mt-4">
   <div class="col-12 col-md-9 d-flex flex-column align-items-center justify-content-center welcome-container">
     <div class="welcome-text mt-4 mb-4">
-      <%= form_with model: @facility, url: member_facility_path(@facility) do |f| %>
+<%= form_with model: @facility, url: member_facility_path(id: @facility.id) do |f| %>
         <%= render 'form', f: f %>
       <% end %>
     </div>

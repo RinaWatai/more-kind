@@ -1,52 +1,57 @@
-<table class="table">
-  <thead>
-    <tr>
-      <% if @member.image.attached? %>
-        <%= image_tag @member.image, size: "100x100" %>
-      <% else %>
-        <%= image_tag 'member_no_image.png', size: "100x100" %>
-      <% end %>
-      <th>nickname</th>
-      <th>email</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><%= @member.name %></td>
-      <td><%= @member.email %></td>
-    </tr>
-  </tbody>
-</table>
-
-<%= link_to "ユーザー情報を編集する", edit_member_member_path(@member) %>
-
- <h5>評価した評価した施設一覧</h5>
-  <% if @facilities.empty? %>
-    <p>評価した施設はありません。</p>
-  <% else %>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>施設名</th>
-          <th>施設説明</th>
-          <th>総合評価</th>
-          <th>あなたの評価</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @facilities.each do |facility| %>
-          <tr>
-            <td><%= link_to facility.title, member_facility_path(facility) %></td>
-            <td><%= facility.body %></td>
-            <td><%= facility.comments.average(:rate).to_f.round(1) %></td>
-            <td>
-              <% facility.comments.where(member_id: current_member.id).each do |comment| %>
-                <div id="review-rating<%= comment.id %>" class="review-rating" data-score=<%= comment.rate %>></div>
-                <%= render partial: "member/comments/show_rate", locals: { comment: comment } %>
-              <% end %>
-            </td>
-          </tr>
+<div class="container">
+  <!-- ユーザー情報セクション -->
+  <div class="user-info">
+    <h2>ユーザー情報</h2>
+    <div class="user-info-content">
+      <div class="user-image-container">
+        <% if @member.image.attached? %>
+          <%= image_tag @member.image, size: "150x150", class: "user-image" %>
+        <% else %>
+          <%= image_tag 'member_no_image.png', size: "150x150", class: "user-image" %>
         <% end %>
-      </tbody>
-    </table>
-  <% end %>
+      </div>
+      <div class="user-details">
+        <p><strong>ニックネーム:</strong> <i class="fas fa-user"></i> <%= @member.name %></p>
+        <p><strong>メール:</strong> <i class="fas fa-envelope"></i> <%= @member.email %></p>
+        <%= link_to "ユーザー情報を編集する", edit_member_member_path(@member), class: "btn btn-primary user-edit-btn" %>
+      </div>
+    </div>
+  </div>
+
+  <!-- 評価した施設一覧セクション -->
+  <div class="rated-facilities">
+    <h3>評価した施設一覧</h3>
+    <% if @facilities.empty? %>
+      <p>評価した施設はありません。</p>
+    <% else %>
+      <table class="table table-striped facility-table">
+        <thead>
+          <tr>
+            <th>施設名</th>
+            <th>施設説明</th>
+            <th>総合評価</th>
+            <th>あなたの評価</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @facilities.each do |facility| %>
+            <tr>
+              <td><%= link_to facility.title, member_facility_path(facility), class: "facility-title" %></td>
+              <td class="facility-description"><%= facility.body %></td>
+              <td class="facility-rating">
+                <span class="stars"><%= '★' * facility.comments.average(:rate).to_i %></span>
+                <%= facility.comments.average(:rate).to_f.round(1) %>
+              </td>
+              <td>
+                <% facility.comments.where(member_id: current_member.id).each do |comment| %>
+                  <div id="review-rating<%= comment.id %>" class="review-rating" data-score=<%= comment.rate %>></div>
+                  <%= render partial: "member/comments/show_rate", locals: { comment: comment } %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
+</div>

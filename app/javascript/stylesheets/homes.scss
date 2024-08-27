@@ -1,0 +1,141 @@
+.container {
+  text-align: center;
+  margin-top: 80px; /* ヘッダーと最初のコンテンツの間に80pxのスペースを追加 */
+}
+
+.welcome {
+  font-size: 25px; /* 太文字を大きく設定 */
+  margin-top: 300px; /* 次の要素との間にスペースを追加 */
+  margin-bottom: 40px;
+}
+
+.welcome-text {
+  font-size: 15px; /* テキストのサイズを大きく設定 */
+  margin-bottom: 200px; /* 次の要素との間に40pxのスペースを追加 */
+}
+
+.search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  margin: 30px auto; /* フォーム周りに十分なスペースを追加 */
+}
+
+.search form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;  /* フォーム全体の幅を少し小さく設定 */
+  max-width: 600px; /* 最大幅を設定してレスポンシブ対応 */
+  text-align: center;
+  border-radius: 50px; /* 角をさらに丸く設定 */
+  background-color: #f0f0f0; /* 背景色を追加して目立たせる */
+  padding: 15px;  /* フォーム全体のパディング */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* フォームに影をつけて浮き上がらせる */
+}
+
+.search-input {
+  flex: 1;
+  height: 45px;  /* 入力フィールドの高さを調整 */
+  font-size: 18px; /* テキストサイズを少し小さく設定 */
+  padding: 8px 12px; /* 内側のスペースを調整して見やすく */
+  border: 1px solid #ccc; /* 枠線のスタイル */
+  border-radius: 50px 0 0 50px; /* 左端をさらに丸くする */
+}
+
+.search-btn {
+  height: 45px; /* ボタンの高さを調整 */
+  font-size: 18px; /* ボタンのテキストサイズを少し小さく設定 */
+  padding: 0 15px; /* ボタン内のスペース */
+  background-color: #d3381c; /* ボタンの背景色 */
+  color: white; /* ボタンのテキスト色 */
+  border: 1px solid #d3381c; /* 枠線のスタイルを一致させる */
+  border-radius: 0 50px 50px 0; /* 右端をさらに丸くする */
+  cursor: pointer; /* マウスカーソルをポインタに変更 */
+  transition: background-color 0.3s ease, transform 0.1s ease; /* ホバー時とアクティブ時のトランジション */
+}
+
+.search-btn:hover {
+  background-color: #b92d19; /* ホバー時に背景色を少し暗くする */
+}
+
+.search-btn:active {
+  transform: translate(-2px, 2px); /* ボタンが斜め左下に動く */
+  background-color: #a52814; /* アクティブ時にさらに暗い色にする */
+}
+
+.ranking {
+  font-size: 28px; /* 総合ランキングのフォントサイズを設定 */
+  margin-bottom: 100px; /* カードとの間に40pxのスペースを追加 */
+  margin-top: 200px;
+}
+
+.top-ranking {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.other-rankings {
+  display: flex;
+  justify-content: center;
+  gap: 60px; /* カード間のスペースを設定 */
+  margin-top: 20px;
+}
+
+.card {
+  border: 1px solid #ccc;
+  padding: 15px;
+  width: 300px; /* カードの幅を適切なサイズに設定 */
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+  cursor: pointer;       /* ホバー時にポインタカーソルを表示 */
+}
+
+.card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 1); /* 背景色の強調 */
+}
+
+.card-header {
+  font-weight: bold;
+  margin-bottom: 10px;
+  white-space: nowrap;         /* テキストを1行に制限 */
+  overflow: hidden;            /* 溢れた部分を隠す */
+  text-overflow: ellipsis;     /* 省略記号を追加 */
+}
+
+.card-body {
+  padding: 10px;
+}
+
+.facility-address {
+  text-align: left;  /* 住所を左揃えに */
+  font-size: 14px;   /* 住所の文字サイズ */
+  color: #333;       /* 住所の文字色 */
+}
+
+.icon-and-info {
+  display: flex;
+  align-items: center;
+  font-size: 1.5em; /* メダルのサイズを大きく */
+}
+
+.gold-medal, .silver-medal, .bronze-medal {
+  font-size: 2em;     /* メダルのアイコンをさらに大きく */
+  margin-right: 10px;
+}
+
+.gold-medal {
+  color: gold;
+}
+
+.silver-medal {
+  color: silver;
+}
+
+.bronze-medal {
+  color: #cd7f32; /* 銅色 */
+}
