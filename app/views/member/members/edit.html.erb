@@ -1,22 +1,24 @@
-<h4>ユーザー情報を編集する</h4>
+<div class="container edit-container">
+  <h4>ユーザー情報を編集する</h4>
 
-<%= form_with(model: @member, url: member_member_path(@member), local: true) do |f| %>
+  <%= form_with(model: @member, url: member_member_path(@member), local: true) do |f| %>
   <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.label :name, for: 'name' %>
+    <%= f.text_field :name, id: 'name' %>
   </div>
   
   <div>
-    <%= f.label :email %>
-    <%= f.text_field :email %>
+    <%= f.label :email, for: 'email' %>
+    <%= f.text_field :email, id: 'email' %>
   </div>
   
   <div>
-    <%= f.label :ユーザー画像 %>
-    <%= f.file_field :image, accept: "image/*" %>
+    <%= f.label :image, for: 'image' %>
+    <%= f.file_field :image, id: 'image', accept: "image/*" %>
   </div>
   
-  <%= f.submit "更新" %>
+  <%= f.submit "更新", class: "btn-border" %>
 <% end %>
 
-<%= link_to "退会", member_member_members_confirm_withdraw_path(@member), class: "btn btn-danger btn-block" %>
+<%= link_to "退会", confirm_withdraw_member_members_path, class: "btn btn-flat" %>
+</div>

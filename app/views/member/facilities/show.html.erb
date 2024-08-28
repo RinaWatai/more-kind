@@ -1,84 +1,78 @@
 <div class="container">
-  <div class="row">
-    <div class="col-auto">
-      <h4 style="background-color: #f8f9fa; padding: 0.25rem 0.75rem;">施設詳細</h4>
+  <div class="facility-info-width">
+  <div class="facility-info-view">
+    <div class="facility-info-content">
+      <div class="facility-image-container">
+        <% if @facility.image.attached? %>
+          <%= image_tag @facility.image, class: "facility-view-image" %>
+        <% else %>
+          <%= image_tag 'facility_no_image.png', class: "facility-view-image" %>
+        <% end %>
+      </div>
+      <div class="facility-details">
+        <p><strong>施設名:</strong> <%= @facility.title %></p>
+        <p><strong>施設説明:</strong> <%= @facility.body %></p>
+        <p><strong>総合評価:</strong> <%= @comments.average(:rate).to_f.round(1) %></p>
+        <p><strong>タグ:</strong> <%= render 'member/facilities/tag_list', tag_list: @facility.tag_list %></p>
+        <p><strong>住所:</strong> 〒<%= @facility.postcode %>
+                                  <%= @facility.prefecture_name %>
+                                  <%= @facility.address_city %>
+                                  <%= @facility.address_street %>
+                                  <%= @facility.address_building %>
+                                  
+        </p>
+      </div>
     </div>
+    <p class="edit-button">
+      <%= link_to '施設内容を編集する', edit_member_facility_path(@facility), class: "btn btn-border edit-btn" %>
+    </p>
   </div>
-
-  <div class="row">
-    <div class="d-flex">
-      <div>
-        <table class="facility_show">
-          <tr>
-            <% if @facility.image.attached? %>
-              <%= image_tag @facility.image, size: "100x100" %>
-            <% else %>
-              <%= image_tag 'facility_no_image.png', size: "100x100" %>
-            <% end %>
-          </tr>
-          <tr>
-            <th>施設名</th>
-            <td><%= @facility.title %></td>
-          </tr>
-          <tr>
-            <th>施設説明</th>
-            <td><%= @facility.body %></td>
-          </tr>
-          <tr>
-            <th class="table__col1">総合評価</th>
-            <td><%= @comments.average(:rate).to_f.round(1) %></td>
-
-          </tr>
-          <tr>
-            <th>tag</th>
-            <td><%= render 'member/facilities/tag_list', tag_list: @facility.tag_list %></td>
-          </tr>
-          <tr>
-            <td><%= link_to '施設内容を編集する', edit_member_facility_path(@facility) %></td>
-          </tr>
-        </table>
+</div>
 
         <!--コメント一覧-->
-        <table class="table">
-          <thead>
-            <tr>
-              <th>評価</th>
-              <th>名前</th>
-              <th>コメント</th>
-              
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <% if @comments.nil? || @comments.empty? %>
-              <tr>
-                <td colspan="3">未評価の施設です</td>
-              </tr>
+<div class="facility-comments-table">
+  <table class="table facility-comments-table-inner">
+    <thead>
+      <tr>
+        <th>評価</th>
+        <th>名前</th>
+        <th>コメント</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @comments.nil? || @comments.empty? %>
+        <tr>
+          <td colspan="4">未評価の施設です</td>
+        </tr>
+      <% else %>
+        <% @comments.each do |comment| %>
+          <tr>
+            <td>
+              <div id="review-rating<%= comment.id %>" class="review-rating" data-score=<%= comment.rate %>></div>
+              <%= render partial: "member/comments/show_rate", locals: { comment: comment } %>
+            </td>
+            <td><%= comment.member.name %></td>
+            <td><%= comment.body %></td>
+            <% if current_member && current_member.id == comment.member_id %>
+              <td>
+                <%= link_to '削除する', member_facility_comment_path(@facility, comment), method: :delete, data: { confirm: '本当に削除しますか?' }, class: 'btn btn-delete' %>
+              </td>
             <% else %>
-              <% @comments.each do |comment| %>
-  <tr>
-    <td>
-      <div id="review-rating<%= comment.id %>" class="review-rating" data-score=<%= comment.rate %>></div>
-      <%= render partial: "member/comments/show_rate", locals: { comment: comment } %>
-    </td>
-    <td><%= comment.member.name %></td>
-    <td><%= comment.body %></td>
-    <% if current_member && current_member.id == comment.member_id %>
-      <td><%= link_to '編集する', edit_member_facility_comment_path(@facility, comment), class: 'btn btn-primary' %></td>
-    <% else %>
-      <td></td>
-    <% end %>
-  </tr>
-<% end %>
+              <td></td>
             <% end %>
-          </tbody>
-        </table>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
         <!--コメント機能-->
         <%= form_with(model: [@facility, @comment], url: member_facility_comments_path(@facility), method: :post, local: true) do |f| %>
           <strong>コメントする</strong>
           <div>
-            <%= f.text_field :body, class: "form-control form-control-sm" %>
+            <%= f.text_area :body, class: "form-control form-control-sm" %>
           </div>
           <td class="table__col1">  
             <div class="field" id="star"><% f.label :all_rating %></div>
@@ -87,7 +81,7 @@
           <div class="average-review-rating" data-score=<%= @comments.average(:rate) %>></div> 
             <%= render partial: "member/comments/form_rate", locals: { comment: @comment } %>
           <div>
-            <%= f.submit 'コメントする', class: "btn btn-primary" %>
+            <%= f.submit 'コメントする', class: "btn btn-border" %>
           </div>
         <% end %>
           <% if flash[:alert] %>
@@ -96,15 +90,8 @@
             </div>
           <% end %>
       </div>
-          <div>
-      〒<%= @facility.postcode %>
-        <%= @facility.prefecture_name %>
-        <%= @facility.address_city %>
-        <%= @facility.address_street %>
-        <%= @facility.address_building %>
-    </div>
-    </div>
 
-    <%= render 'member/facilities/map' %>
+    </div>
+    </div>
   </div>
 </div>

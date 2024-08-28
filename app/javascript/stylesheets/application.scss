@@ -1,7 +1,7 @@
 @use '~bootstrap/scss/bootstrap';
 @import "facilities";
 @import "homes";
-
+@import "member";
 
 :root {
   --primary-color: #d3381c;  /* 可愛らしいピンク色 */
@@ -21,13 +21,24 @@ a:hover, a:focus, a:active {
   transition: color 0.3s ease; /* スムーズな色変更のためのトランジション */
 }
 
-.container {
-  padding: 20px;
+a:focus, 
+button:focus, 
+input:focus, 
+textarea:focus, 
+select:focus, 
+.card-index:focus {
+  outline: none; /* フォーカス時の枠線を表示しない */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
 }
 
 .header {
   background-color: #fdeff2;
-  margin-bottom: 200px;
   width: 100%;
   position: fixed;
   top: 0;
@@ -38,6 +49,27 @@ a:hover, a:focus, a:active {
 
 .header.hidden {
   transform: translateY(-100%); /* ヘッダーを上に隠す */
+}
+
+.flash-messages {
+  display: flex;
+  align-items: center; /* 垂直方向の中央揃え */
+  margin-left: 20px; /* ロゴとメッセージの間隔 */
+}
+
+.flash-message {
+  background: none; /* 背景を削除 */
+  border: none; /* 枠線を削除 */
+  color: inherit; /* テキストの色を継承 */
+  padding: 0; /* パディングを削除 */
+  margin: 0; /* マージンを削除 */
+  font-size: 1rem; /* フォントサイズを設定（必要に応じて調整） */
+  white-space: nowrap; /* テキストが改行されないように */
+}
+
+.container {
+  text-align: center;
+  margin-top: 200px !important; /* 強制的に適用 */
 }
 
 .background-image {
@@ -59,6 +91,7 @@ a:hover, a:focus, a:active {
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
   color: #d3381c;
+  position: relative; /* 必要な場合、positionをrelativeに設定 */
 }
 
 .btn-border:before {
@@ -70,7 +103,7 @@ a:hover, a:focus, a:active {
   content: '';
   -webkit-transition: all .3s;
   transition: all .3s;
-  background: #d3381c;  /* 初期状態では暗い色(#d3381c)に設定しておく */
+  background: #d3381c;
 }
 
 .btn-border:hover {
@@ -79,5 +112,72 @@ a:hover, a:focus, a:active {
 }
 
 .btn-border:hover:before {
-  background: #fff; /* カーソルを合わせた時にバーの色を白色(#fff)に変更 */
+  background: #fff;
+}
+
+.tag-link {
+  border: 2px solid #7a4171;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.9);
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  color: #7a4171;
+  position: relative; /* 必要な場合、positionをrelativeに設定 */
+}
+
+.tag-link:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  content: '';
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  background: #7a4171;
+}
+
+.tag-link:hover {
+  color: #fff;
+  background: #7a4171;
+}
+
+.tag-link:hover:before {
+  background: #fff;
+}
+
+.btn-delete {
+  display: inline-block; /* 他のボタンと同じサイズにするために、インラインブロックに設定 */
+  padding: 0.5rem 1rem; /* 他のボタンと同じパディングに設定 */
+  color: #fff; /* テキストの色を白に設定 */
+  background-color: #d3381c; /* ホバーしていない時の背景色 */
+  border-radius: 4px; /* 他のボタンと同じ角丸に設定 */
+  text-align: center; /* テキストを中央揃え */
+  text-decoration: none; /* 下線なし */
+  font-size: 1rem; /* 他のボタンと同じフォントサイズに設定 */
+  transition: background-color 0.3s ease; /* ホバー時の背景色の変化にトランジションを追加 */
+  border: 1px solid #fff;
+}
+
+.btn-delete:hover {
+  background-color: #fff; /* ホバー時の背景色 */
+  color: #d3381c; /* ホバー時のテキスト色 */
+  border: 1px solid #d3381c; /* ホバー時の枠線の色と太さ */
+}
+
+/* ページネーション */
+.pagination {
+  display: flex;
+  justify-content: center; /* 中央揃え */
+  margin: 40px 0; /* 上との間隔を20pxに設定 */
+}
+
+/* ページネーションのリンクのフォントサイズを大きくする */
+.pagination .page-link {
+  font-size: 4rem; /* フォントサイズを大きくする */
+}
+
+/* ページネーションのアイテム間の間隔を広くする */
+.pagination .page-item {
+  margin: 0 10px !important; /* 左右のマージンを広げる */
 }

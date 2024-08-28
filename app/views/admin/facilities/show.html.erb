@@ -1,59 +1,66 @@
 <div class="container">
-  <div class="row">
-    <div class="col-auto">
-      <h4 style="background-color: #f8f9fa; padding: 0.25rem 0.75rem;">施設詳細</h4>
+  <div class="facility-info-width">
+  <div class="facility-info-view">
+    <div class="facility-info-content">
+      <div class="facility-image-container">
+        <% if @facility.image.attached? %>
+          <%= image_tag @facility.image, class: "facility-view-image" %>
+        <% else %>
+          <%= image_tag 'facility_no_image.png', class: "facility-view-image" %>
+        <% end %>
+      </div>
+      <div class="facility-details">
+        <p><strong>施設名:</strong> <%= @facility.title %></p>
+        <p><strong>施設説明:</strong> <%= @facility.body %></p>
+        <p><strong>総合評価:</strong> <%= @comments.average(:rate).to_f.round(1) %></p>
+        <p><strong>タグ:</strong> <%= render 'admin/facilities/tag_list', tag_list: @facility.tag_list %></p>
+        <p><strong>住所:</strong> 〒<%= @facility.postcode %>
+                                  <%= @facility.prefecture_name %>
+                                  <%= @facility.address_city %>
+                                  <%= @facility.address_street %>
+                                  <%= @facility.address_building %>
+                                  
+        </p>
+      </div>
+    </div>
+<%= link_to "施設を削除", admin_facility_path(@facility), method: :delete, data: { confirm: '本当に削除しますか?' }, class: 'btn btn-delete' %>
+  </div>
+</div>
+
+        <!--コメント一覧-->
+<div class="facility-comments-table">
+  <table class="table facility-comments-table-inner">
+    <thead>
+      <tr>
+        <th>評価</th>
+        <th>名前</th>
+        <th>コメント</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @comments.nil? || @comments.empty? %>
+        <tr>
+          <td colspan="4">未評価の施設です</td>
+        </tr>
+      <% else %>
+        <% @comments.each do |comment| %>
+          <tr>
+            <td>
+              <div id="review-rating<%= comment.id %>" class="review-rating" data-score=<%= comment.rate %>></div>
+              <%= render partial: "member/comments/show_rate", locals: { comment: comment } %>
+            </td>
+            <td><%= comment.member.name %></td>
+            <td><%= comment.body %></td>
+              <td>
+                <%= link_to '削除する', admin_facility_comment_path(@facility,comment), method: :delete, data: {confirm: "削除しますか？"}, class: "btn btn-delete" %></td>
+              </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
     </div>
   </div>
-
-  <div class="row">
-    <div class="d-flex">
-
-      <div>
-      <%= image_tag @facility.image, size: "100x100" if @facility.image.attached? %>
-        <table class="table facility_show">
-          
-          <tr>
-
-            <th>施設名</th>
-            <td><%= @facility.title %></td>
-          </tr>
-          <tr>
-            <th>施設説明</th>
-            <td><%= @facility.body %></td>
-          </tr>
-          <tr>
-            <th>tag</th>
-            <td><%= render 'member/facilities/tag_list', tag_list: @facility.tag_list %></td>
-          </tr>
-        </table>
-
-<%= link_to "施設を削除", admin_facility_path(@facility), method: :delete, data: {confirm: "削除しますか？"}, class: "btn btn-danger" %>
-        <!--コメント一覧-->
-<table class = "table">
-  <thead>
-    <tr>
-      <th>コメント</th>
-      <th>メンバー名</th>
-      <th>評価</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% if @comments.nil? %>
-      <tr>
-        <td colspan="3">コメントはありません。</td>
-      </tr>
-    <% else %>
-      <% @comments.each do |comment| %>
-        <tr>
-          <td><%= comment.body %></td>
-          <td><%= comment.member.name %></td>
-          <td>
-            <div id="review-rating<%= comment.id %>" class="review-rating" data-score=<%= comment.rate %>></div>
-            <%= render partial: "member/comments/show_rate", locals: { comment: comment } %>
-          </td>
-          <td><%= link_to "コメントを削除", admin_facility_comment_path(@facility,comment), method: :delete, data: {confirm: "削除しますか？"}, class: "btn btn-danger" %></td>
-        </tr>
-      <% end %>
-    <% end %>
-  </tbody>
-</table>
+</div>

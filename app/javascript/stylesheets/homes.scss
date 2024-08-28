@@ -1,17 +1,28 @@
-.container {
-  text-align: center;
-  margin-top: 80px; /* ヘッダーと最初のコンテンツの間に80pxのスペースを追加 */
+.animated-text {
+  margin-top: 180px;
+  font-family: 'Brush Script MT', cursive; /* 草書体の指定 */
+  display: inline-block; /* テキストを中央に配置するための設定 */
+  font-size: 2.1em; /* フォントサイズを調整 */
+  color: #333; /* テキストの色を指定 */
+  overflow: hidden; /* テキストがはみ出ないようにする */
+  white-space: nowrap; /* テキストが折り返されないようにする */
+  width: 0; /* 初期幅を0に設定 */
+  animation: typing 4s steps(10) forwards; /* タイピングアニメーションのみ設定 */
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 8em; } /* テキストの全長に合わせて調整 */
 }
 
 .welcome {
-  font-size: 25px; /* 太文字を大きく設定 */
-  margin-top: 300px; /* 次の要素との間にスペースを追加 */
+  font-size: 28px; /* 太文字を大きく設定 */
   margin-bottom: 40px;
 }
 
 .welcome-text {
-  font-size: 15px; /* テキストのサイズを大きく設定 */
-  margin-bottom: 200px; /* 次の要素との間に40pxのスペースを追加 */
+  font-size: 18px; /* テキストのサイズを大きく設定 */
+  margin-bottom: 180px; /* 次の要素との間に200pxのスペースを追加 */
 }
 
 .search {
@@ -67,13 +78,15 @@
 
 .ranking {
   font-size: 28px; /* 総合ランキングのフォントサイズを設定 */
-  margin-bottom: 100px; /* カードとの間に40pxのスペースを追加 */
+  margin-bottom: 100px; /* カードとの間に100pxのスペースを追加 */
   margin-top: 200px;
 }
 
 .top-ranking {
   display: flex;
   justify-content: center;
+  flex-direction: column; /* 垂直にカードを配置 */
+  align-items: center;
   margin-bottom: 20px;
 }
 
@@ -88,23 +101,29 @@
   border: 1px solid #ccc;
   padding: 15px;
   width: 300px; /* カードの幅を適切なサイズに設定 */
-  background-color: rgba(255, 255, 255, 0.9);
+  background-image: url('../images/card.jpg'); /* 背景画像を設定 */
+  background-size: cover; /* 画像がカード全体にフィットするようにする */
+  background-position: center; /* 画像の位置を中央に設定 */
+  background-repeat: no-repeat; /* 画像が繰り返されないようにする */
+  background-color: rgba(255, 255, 255, 0.8); /* 背景色を白に設定（透過度あり） */
+  background-blend-mode: overlay; /* 背景画像と背景色を合成して白く表示 */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease;
-  cursor: pointer;       /* ホバー時にポインタカーソルを表示 */
+  transition: box-shadow 0.3s ease, transform 0.5s ease; /* トランジションを調整 */
+  cursor: pointer; /* ホバー時にポインタカーソルを表示 */
+  overflow: hidden; /* カードの範囲外に内容がはみ出さないようにする */
 }
 
 .card:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  background-color: rgba(255, 255, 255, 1); /* 背景色の強調 */
+  background-color: rgba(255, 255, 255, 0.8); /* 背景色の強調 */
+  transform: scale(1.05); /* カードを少し大きくする */
 }
 
 .card-header {
-  font-weight: bold;
+  align-items: center;
   margin-bottom: 10px;
-  white-space: nowrap;         /* テキストを1行に制限 */
-  overflow: hidden;            /* 溢れた部分を隠す */
-  text-overflow: ellipsis;     /* 省略記号を追加 */
+  background-color: rgba(253, 239, 242, 0.8);
+  padding: 10px;
 }
 
 .card-body {
@@ -112,9 +131,20 @@
 }
 
 .facility-address {
-  text-align: left;  /* 住所を左揃えに */
-  font-size: 14px;   /* 住所の文字サイズ */
-  color: #333;       /* 住所の文字色 */
+  text-align: left; /* 住所を左揃えに */
+  font-size: 14px; /* 住所の文字サイズ */
+  color: #333; /* 住所の文字色 */
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* 最大行数を3行に制限 */
+  -webkit-box-orient: vertical;
+  overflow: hidden; /* 溢れた部分を隠す */
+  text-overflow: ellipsis; /* 省略記号を追加 */
+}
+
+.facility-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #d3381c; /* 色を変更 */
 }
 
 .icon-and-info {
@@ -124,7 +154,7 @@
 }
 
 .gold-medal, .silver-medal, .bronze-medal {
-  font-size: 2em;     /* メダルのアイコンをさらに大きく */
+  font-size: 2em; /* メダルのアイコンをさらに大きく */
   margin-right: 10px;
 }
 
@@ -138,4 +168,7 @@
 
 .bronze-medal {
   color: #cd7f32; /* 銅色 */
+}
+.display-1 {
+  margin-bottom: 40px;
 }

@@ -1,6 +1,5 @@
 .facilities-sort {
   margin-bottom: 20px;
-  margin-top: 100px;
   display: flex;
   justify-content: space-between; /* 左右に配置 */
   align-items: center;
@@ -41,7 +40,7 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: relative;
   cursor: pointer;
-  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+  transition: box-shadow 0.3s ease, background-color 0.3s ease, transform 0.3s ease; /* transformのトランジションを追加 */
 }
 
 .card-index::before {
@@ -51,11 +50,6 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('../images/card.jpg');
-  background-size: cover;
-  background-position: center;
-  opacity: 0; /* 初期状態では背景画像を非表示 */
-  transition: opacity 0.3s ease; /* 背景画像の表示をスムーズに */
   z-index: 0;
   border-radius: 5px;
 }
@@ -72,6 +66,7 @@
 .card-index:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   background-color: rgba(255, 255, 255, 1);
+  transform: scale(1.05); /* ホバー時にカードを少し拡大 */
 }
 
 .card-index-header {
@@ -115,89 +110,188 @@
 }
 
 .card-index-body {
+  position: relative; /* 相対位置にする */
   margin-top: 10px;
+  padding-bottom: 30px; /* タグのためのスペースを確保 */
 }
 
 .facility-description {
   color: #555;
 }
 
-
-
-
-
-.user-info {
-  background-color: #f9f9f9;
-  border-radius: 10px;
-  padding: 20px;
-  margin-bottom: 20px;
+.tags {
+  position: absolute;
+  bottom: 0; /* 下端に配置 */
+  right: 0; /* 右端に配置 */
+  background-color: rgba(255, 255, 255, 0.8); /* 半透明の背景色を設定 */
+  border-radius: 5px; /* 角を丸める */
+  z-index: 1; /* 他の要素の上に表示 */
 }
 
-.user-info-content {
-  display: flex;
-  align-items: center;
+.tags .tag {
+  display: inline-block;
+  margin: 2px;
 }
 
-.user-image-container {
-  margin-right: 20px;
+/* edit画面; */
+.half-width-form {
+  max-width: 50%; /* フォームの横幅を親要素の50%に設定 */
+  margin: 0 auto; /* 中央寄せ */
+  padding: 20px; /* 必要に応じてパディングを調整 */
+  box-sizing: border-box; /* パディングを含めた幅の計算 */
 }
 
-.user-image {
-  border-radius: 50%;
-  border: 2px solid #ddd;
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 1px solid #d3381c;
+  border-radius: 3px;
+  width: 16px;
+  height: 16px;
+  background-color: #fff;
+  position: relative;
+  cursor: pointer;
 }
 
-.user-details {
-  font-size: 1.1em;
+/* チェックボックスがチェックされたときのスタイル */
+input[type="checkbox"]:checked {
+  background-color: #d3381c;
+  border-color: #d3381c;
 }
 
-.user-details p {
-  margin: 5px 0;
+/* チェックマークのスタイル */
+input[type="checkbox"]:checked::after {
+  content: '\2714'; /* チェックマークのUnicode文字 */
+  color: #fff; /* チェックマークの色 */
+  font-size: 14px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.user-edit-btn {
-  background-color: #ff7f7f;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  color: #fff;
-  text-decoration: none;
+/* show画面 */
+
+.facility-info-width {
+  max-width: 800px; /* 必要に応じて最大幅を設定 */
+  margin: 0 auto; /* 中央寄せ */
 }
 
-/* 評価した施設一覧セクション */
-.rated-facilities {
-  background-color: #fff3e6;
-  border-radius: 10px;
-  padding: 20px;
-}
-
-.facility-table {
+.facility-info-view {
+  position: relative;
   width: 100%;
-  border-collapse: collapse;
+  background-color: rgba(255, 255, 255, 0.98);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 80px;
+  box-sizing: border-box;
+  overflow: hidden; /* Prevents overflowing content */
 }
 
-.facility-table th, .facility-table td {
-  padding: 10px;
-  border: 1px solid #ddd;
+.facility-comments-table {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.98);
+  border-radius: 10px;
+  padding: 20px;
+  box-sizing: border-box;
+  margin-top: 40px; /* 上のマージンを追加 */
+  margin-bottom: 80px;
+}
+
+.facility-comments-table td {
+  word-wrap: break-word; /* 長い単語やURLを改行する */
+  overflow-wrap: break-word; /* 長い単語やURLを改行する (互換性のため) */
+  word-break: break-word; /* 単語が枠を超えないようにする */
+}
+
+/* コメントテキストに適用するスタイル */
+.facility-comments-table td {
+  max-width: 250px; /* テキストセルの最大幅を設定（必要に応じて調整） */
+}
+
+.facility-info-content {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap; /* Allows the content to wrap if the space is too narrow */
+  gap: 20px;
+}
+
+.facility-image-container {
+  flex: 0 0 auto; /* 固定サイズ */
+}
+
+.facility-view-image {
+  width: 100%;
+  max-width: 300px; /* Ensures the image doesn’t exceed a specific width */
+  height: auto;
+  object-fit: cover; /* Ensures the image scales properly */
+}
+
+.facility-details {
+  position: relative;
+  flex: 1;
   text-align: left;
+  margin-left: 40px;
+  margin-bottom: 200px;
+  overflow-wrap: break-word; /* Prevents long words from overflowing */
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+.facility-details p {
+  margin: 0 0 10px 0; /* 下のマージンを設定 */
+  font-size: 16px; /* フォントサイズ */
+}
+
+.facility-details strong {
+  display: inline-block;
+  min-width: 120px; /* ラベルの幅 */
+  font-weight: bold; /* ラベルのフォントの太さ */
+}
+
+.edit-button {
+  position: absolute;
+  bottom: 20px; /* ボトムから20px */
+  right: 20px; /* 右から20px */
 }
 
 .facility-title {
-  font-weight: bold;
-  color: #ff7f7f;
-  text-decoration: none;
+  font-size: 100px; /* 例: 文字サイズを大きく */
+  font-weight: bold; /* 必要に応じて文字を太字に設定 */
 }
 
-.facility-description {
-  color: #666;
-  font-size: 0.9em;
+.half-width-form {
+  max-width: 50%; /* 横幅を50%に設定 */
+  margin: 0 auto; /* 中央寄せ */
 }
 
-.facility-rating {
-  text-align: center;
+.half-width-form .form-control {
+  width: 100%; /* テキストフィールドの幅をフォームに合わせる */
+  margin-bottom: 40px;
+  
 }
 
-.stars {
-  color: #ffa500;
-  margin-right: 5px;
+.textarea-height {
+  height: 200px; /* 縦の高さを調整 */
+  width: 100%; /* 横幅を親要素に合わせる */
+  box-sizing: border-box; /* パディングとボーダーを含めて幅を計算 */
+}
+
+.button-admin-tags {
+  margin-bottom: 180px; /* ボタン間のスペースを調整 */
+}
+
+.admin-tags-all-delete {
+  margin-top: 80px; /* ボタンの上に40pxのスペースを追加 */
+}
+
+.facility-comments-table, .half-width-form, .button-admin-tags, .admin-tags-all-delete {
+  margin-bottom: 40px;
+}
+
+.edit-btn {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
 }

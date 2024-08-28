@@ -4,10 +4,6 @@ class Member::CommentsController < ApplicationController
   def new
     @comment = Comment.new
   end
-
-  def index
-    @comments = Comment.page(params[:page]).per(10)
-  end
   
   def create
     @comment = Comment.new(comment_params)
@@ -18,20 +14,6 @@ class Member::CommentsController < ApplicationController
     else
       flash[:alert] = "既に評価済みです。"
       redirect_to member_facility_path(@comment.facility_id)
-    end
-  end
-  
-  def edit
-    @comment = Comment.find(params[:id])
-    @facility = Facility.find(params[:facility_id])
-  end
-
-  def update
-    @comment = Comment.find(params[:id])
-    if @comment.update(comment_params)
-      redirect_to member_facility_path(@comment.facility_id)
-    else
-      render :edit
     end
   end
   

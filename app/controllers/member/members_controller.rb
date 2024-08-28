@@ -43,11 +43,16 @@ class Member::MembersController < ApplicationController
     redirect_to members_path
   end
   
-  def confirm_withdraw
+  def withdraw
     @member = current_member
     @member.update(is_deleted: true, name: "退会済み")
     reset_session
     redirect_to root_path, notice: "ご利用ありがとうございました"
+  end
+
+  
+  def confirm_withdraw
+    @member = current_member
   end
   
   private

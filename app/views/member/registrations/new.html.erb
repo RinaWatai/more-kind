@@ -1,3 +1,5 @@
+<div class="container">
+
 <h4>新規登録</h4>
 <p>施設の登録や評価が行えるようになります</p>
 
@@ -27,9 +29,10 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "******" %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "新規登録" %>
+  <div class="actions" style="margin-top: 20px; margin-bottom: 20px;">
+    <%= f.submit "新規登録", class: 'btn btn-border' %>
   </div>
 <% end %>
 
 <%= render "member/shared/links" %>
+  </div>

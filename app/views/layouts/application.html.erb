@@ -37,6 +37,7 @@
               <!--未ログイン時ヘッダー-->
               <% else %>
                 <li class="nav-item"><%= link_to 'About', about_path, class: 'btn btn-custom-pink btn-custom-white nav-link mr-3' %></li>
+                <li class="nav-item"><%= link_to '施設一覧', member_facilities_path, class: 'btn btn-custom-pink btn-custom-white nav-link mr-3' %></li>
                 <li class="nav-item"><%= link_to '新規登録', new_member_registration_path, class: 'btn btn-custom-pink btn-custom-white nav-link mr-3' %></li>
                 <li class="nav-item"><%= link_to 'ログイン', new_member_session_path, class: 'btn btn-custom-pink btn-custom-white nav-link mr-3' %></li>
               <% end %>

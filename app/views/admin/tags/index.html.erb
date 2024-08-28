@@ -1,10 +1,18 @@
-<div>
-  <%= link_to "tagを新規作成する", new_admin_tag_path %>
-</div>
+<div class="container">
+  <div class="button-admin-tags">
+    <%= link_to "tagを新規作成する", new_admin_tag_path, class: 'btn btn-border' %>
+  </div>
 
-  <%= form_for Tag.new, url: admin_tag_delete_all_path, method: :delete do |f| %>
-    <%= f.collection_check_boxes(:id, @tags, :id, :name) do |b| %>
-      <%= b.label { b.check_box +  b.text } %>
-    <% end %>
-    <%= f.submit "  まとめて削除する" %> 
-  <% end %>
+  <div class="button-admin-tags">
+    <div>
+      <%= form_for Tag.new, url: admin_tag_delete_all_path, method: :delete do |f| %>
+        <%= f.collection_check_boxes(:id, @tags, :id, :name) do |b| %>
+          <%= b.label { b.check_box +  b.text } %>
+      <% end %>
+    </div>
+    <div class="admin-tags-all-delete">
+        <%= f.submit "  まとめて削除する", data: { confirm: '本当に削除しますか?' }, class: 'btn btn-delete' %>
+      <% end %>
+    </div>
+  </div>
+</div>

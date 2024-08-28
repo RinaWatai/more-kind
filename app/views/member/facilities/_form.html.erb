@@ -21,10 +21,6 @@
   <%= f.file_field :image, accept: "image/*" %>
 </div>
 
-<%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |b| %>
-  <%= b.label { b.check_box + b.text } %>
-<% end %>
-
 <div class="field">
   <%= f.label :postcode, '郵便番号' %>
   <%= f.text_field :postcode, placeholder: '000-0000', autocomplete: 'postcode', class: 'form-control',id: "facility_postcode" %>
@@ -44,15 +40,20 @@
   <%= f.text_field :address_street, autocomplete: 'address_street', class: 'form-control' %>
 </div>
 
-<div class="field">
+<div class="field" style="margin-bottom: 20px;">
   <%= f.label :address_building, '建物' %>
   <%= f.text_field :address_building, autocomplete: 'address_building', class: 'form-control' %>
 </div>
 
+<%= f.label :tags, 'タグ' %>
+<div class="checkbox-custom">
+  <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |b| %>
+    <%= b.label { b.check_box + b.text } %>
+  <% end %>
+</div>
 
-
-<div class="my-4">
-  <%= f.submit "保存する", class: "btn btn-primary" %>
+<div style="margin-top: 20px;">
+  <%= f.submit "保存する", class: "btn btn-border" %>
 </div>
 
 

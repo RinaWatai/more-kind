@@ -1,0 +1,202 @@
+.user-info {
+  background-color: rgba(255, 255, 255, 0.98); /* 背景色を変更 */
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+/* ユーザー情報コンテンツの中央寄せ */
+.user-info-content {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* 中央寄せ */
+  gap: 20px; /* 画像とテキストの間隔を設定 */
+}
+
+/* ユーザー画像の設定 */
+.user-image-container {
+  flex-shrink: 0; /* 画像のサイズを固定 */
+}
+
+.user-image {
+  border-radius: 50%;
+  border: 2px solid #ddd;
+  width: 150px; /* 画像の幅を指定 */
+  height: 150px; /* 画像の高さを指定 */
+}
+
+/* ユーザー詳細の設定 */
+.user-details {
+  font-size: 1.1em;
+  display: flex;
+  flex-direction: column; /* 縦に並べる */
+  align-items: center; /* 中央揃え */
+}
+
+/* 詳細情報の段落のスタイル */
+.user-details p {
+  margin: 5px 0;
+}
+
+/* 評価した施設一覧セクション */
+.rated-facilities {
+  background-color: rgba(255, 255, 255, 0.98); /* 背景色を変更 */
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.table-responsive {
+  overflow-x: auto; /* テーブルが幅を超える場合、スクロールバーを表示 */
+}
+
+/* テーブル全体のスタイル */
+.facility-table {
+  width: 100%; /* テーブル幅を100%に設定 */
+  border-collapse: collapse; /* ボーダーを重ねて表示 */
+}
+
+.facility-table th, .facility-table td {
+  padding: 10px; /* セル内のパディングを設定 */
+  text-align: left; /* テキストを左揃えに設定 */
+  border-bottom: 1px solid #ddd; /* セルの下にボーダーを追加 */
+}
+
+.facility-table th {
+  background-color: rgba(255, 255, 255, 0.98); /* ヘッダーの背景色 */
+}
+
+.facility-title {
+  text-decoration: none; /* リンクの下線を削除 */
+  color: inherit; /* テキストの色を継承 */
+}
+
+.facility-description {
+  max-width: 200px; /* 施設説明の最大幅 */
+  overflow: hidden; /* 内容がはみ出ないように設定 */
+  text-overflow: ellipsis; /* 内容が長い場合に省略記号を表示 */
+  white-space: nowrap; /* テキストが改行されないように設定 */
+}
+
+.facility-rating {
+  text-align: center; /* 数字を中央揃えに */
+}
+
+.rating-number {
+  font-size: 1.2em; /* 数字を少し大きくして見やすく */
+  font-weight: bold; /* 数字を太字に */
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #f9f9f9; /* 奇数行の背景色 */
+}
+
+.table-striped tbody tr:nth-of-type(even) {
+  background-color: #ffffff; /* 偶数行の背景色 */
+}
+
+
+.table-striped td, .table-striped th {
+  padding: 8px 12px;
+  text-align: left;
+}
+
+/* edit画面 */
+.edit-container {
+  max-width: 50%; /* フォームの幅を半分に設定 */
+  margin: 0 auto; /* 中央に配置 */
+}
+
+/* タイトルの下にスペースを追加 */
+.edit-container h4 {
+  margin-bottom: 20px;
+}
+
+/* 各フォームフィールドの間にスペースを追加 */
+.edit-container div {
+  margin-bottom: 20px;
+}
+
+/* ラベルを左上に配置するためのスタイル */
+.edit-container label {
+  display: block;
+  margin-bottom: 5px; /* ラベルとテキストフィールドの間のスペース */
+  font-weight: bold; /* ラベルを強調 */
+}
+
+/* テキストフィールドとメールフィールドのスタイル */
+.edit-container input[type="text"], 
+.edit-container input[type="email"] {
+  width: 100%; /* フィールドの幅を全幅に */
+  padding: 10px; /* フィールド内のテキスト周りにスペースを追加 */
+  box-sizing: border-box; /* パディングが幅に影響しないように */
+  border: 1px solid #ccc; /* フィールドの境界線 */
+  border-radius: 5px; /* フィールドの角を丸く */
+}
+
+/* 画像フォームのスタイル（境界線を削除） */
+.edit-container input[type="file"] {
+  width: 100%; /* フィールドの幅を全幅に */
+  padding: 10px; /* フィールド内のテキスト周りにスペースを追加 */
+  box-sizing: border-box; /* パディングが幅に影響しないように */
+  border: none; /* 境界線を削除 */
+  background-color: #f8f8f8; /* 背景色を少し変える（任意） */
+}
+
+/* ボタンのスタイル */
+.edit-container input[type="submit"] {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: auto; /* ボタンの幅を自動に */
+}
+
+.edit-container input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.admin-members-table-link {
+  display: block; /* テーブル全体をブロック要素に */
+  text-decoration: none; /* デフォルトの下線を削除 */
+}
+
+#admin-members-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+#admin-members-table th, #admin-members-table td {
+  padding: 10px;
+  border: none;
+  text-align: left;
+}
+
+#admin-members-table tr:hover {
+  background-color: transparent; /* ホバー時の背景色を透明に設定 */
+}
+
+#admin-members-table th {
+  background-color: #f0f0f0;
+}
+
+.table-row {
+  cursor: default; /* カーソルをデフォルトに設定 */
+}
+
+.table-row:hover {
+  background-color: transparent; /* ホバー時の背景色を透明に設定 */
+}
+
+/* 画像を丸く表示 */
+.rounded-image {
+  border-radius: 50%; /* 画像の角を丸くする */
+  width: 100px; /* 画像の幅 */
+  height: 100px; /* 画像の高さ */
+  object-fit: cover; /* 画像の縦横比を保持して、指定したサイズに収める */
+  border: 2px solid #ddd; /* 細い線で囲む */
+}
