@@ -1,12 +1,12 @@
 class Admin::CommentsController < ApplicationController
   before_action :authenticate_admin!
-  
-    def destroy
-      @comment = Comment.find(params[:id])
-      facility_id = @comment.facility_id
-      @comment.destroy
-      redirect_to admin_facility_path(facility_id)
-    end
+
+  def destroy
+    @comment = Comment.find(params[:id])
+    facility_id = @comment.facility_id
+    @comment.destroy
+    redirect_to admin_facility_path(facility_id)
+  end
 
   private
 

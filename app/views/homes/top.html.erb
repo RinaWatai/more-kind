@@ -16,72 +16,68 @@
         <%= submit_tag '検索', class: "search-btn" %>
       <% end %>
     </div>
-    
-    <h3 class="ranking">総合ランキング</h3>
-    <% top_facility = @facilities_sorted.first %>
-    <% other_facilities = @facilities_sorted.drop(1) %>
 
+    <h3 class="ranking">総合ランキング</h3>
+    
     <!-- 1位の施設を表示 -->
     <div class="top-ranking">
-  <% top_facility = @facilities_sorted.first %>
-  <% if top_facility.present? && @facility_ratings[top_facility.id].present? %>
-    <%= link_to member_facility_path(top_facility), class: 'card' do %>
-      <div class="card-header d-block text-dark">
-        <div class="icon-and-info">
-          <i class="fa-solid fa-medal gold-medal"></i>
-          <div class="info">
-            <div class="facility-title"><%= top_facility.title %></div>
-            <div>評価: <%= @facility_ratings[top_facility.id].to_f.round(1) %></div>
-          </div>
-        </div>
-      </div>
-      <div class="card-body">
-        <div class="facility-address">
-          〒<%= top_facility.postcode %><br>
-          <%= top_facility.prefecture_name %> <%= top_facility.address_city %><br>
-          <%= top_facility.address_street %> <%= top_facility.address_building %>
-        </div>
-      </div>
-    <% end %>
-  <% else %>
-    <p>トップランクの施設情報がありません。</p>
-  <% end %>
-</div>
-
-    <!-- 2位と3位の施設を同じレイアウトで表示 -->
-<div class="other-rankings">
-  <% other_facilities = @facilities_sorted.drop(1) %>
-  <% rated_facilities = other_facilities.select { |facility| @facility_ratings[facility.id].present? } %>
-  <% if rated_facilities.any? %>
-    <% rated_facilities.each_with_index do |facility, index| %>
-      <% break if index >= 2 %> <!-- 2位と3位のみ表示 -->
-      <%= link_to member_facility_path(facility), class: 'card' do %>
-        <div class="card-header d-block text-dark">
-          <div class="icon-and-info">
-            <% if index == 0 %>
-              <i class="fa-solid fa-medal silver-medal"></i>
-            <% elsif index == 1 %>
-              <i class="fa-solid fa-medal bronze-medal"></i>
-            <% end %>
-            <div class="info">
-              <div class="facility-title"><%= facility.title %></div>
-              <div>評価: <%= @facility_ratings[facility.id].to_f.round(1) %></div>
+      <% top_facility = @facilities_sorted.first %>
+      <% if top_facility.present? && @facility_ratings[top_facility.id].present? %>
+        <%= link_to member_facility_path(top_facility), class: 'card' do %>
+          <div class="card-header d-block text-dark">
+            <div class="icon-and-info">
+              <i class="fa-solid fa-medal gold-medal"></i>
+              <div class="info">
+                <div class="facility-title"><%= top_facility.title %></div>
+                <div>評価: <%= @facility_ratings[top_facility.id].to_f.round(1) %></div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="card-body">
-          <div class="facility-address">
-            〒<%= facility.postcode %><br>
-            <%= facility.prefecture_name %> <%= facility.address_city %><br>
-            <%= facility.address_street %> <%= facility.address_building %>
+          <div class="card-body">
+            <div class="facility-address">
+              〒<%= top_facility.postcode %><br>
+              <%= top_facility.prefecture_name %> <%= top_facility.address_city %><br>
+              <%= top_facility.address_street %> <%= top_facility.address_building %>
+            </div>
           </div>
-        </div>
+        <% end %>
+      <% else %>
+        <p>トップランクの施設情報がありません。</p>
       <% end %>
-    <% end %>
-  <% else %>
-    <p>他のランクの施設情報がありません。</p>
-  <% end %>
-</div>
+    </div>
 
+    <div class="other-rankings">
+      <% other_facilities = @facilities_sorted.drop(1) %>
+      <% rated_facilities = other_facilities.select { |facility| @facility_ratings[facility.id].present? } %>
+      <% if rated_facilities.any? %>
+        <% rated_facilities.each_with_index do |facility, index| %>
+          <% break if index >= 2 %> <!-- 2位と3位のみ表示 -->
+          <%= link_to member_facility_path(facility), class: 'card' do %>
+            <div class="card-header d-block text-dark">
+              <div class="icon-and-info">
+                <% if index == 0 %>
+                  <i class="fa-solid fa-medal silver-medal"></i>
+                <% elsif index == 1 %>
+                  <i class="fa-solid fa-medal bronze-medal"></i>
+                <% end %>
+                <div class="info">
+                  <div class="facility-title"><%= facility.title %></div>
+                  <div>評価: <%= @facility_ratings[facility.id].to_f.round(1) %></div>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="facility-address">
+                〒<%= facility.postcode %><br>
+                <%= facility.prefecture_name %> <%= facility.address_city %><br>
+                <%= facility.address_street %> <%= facility.address_building %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      <% else %>
+        <p>他のランクの施設情報がありません。</p>
+      <% end %>
+    </div>
   </div>
 </div>

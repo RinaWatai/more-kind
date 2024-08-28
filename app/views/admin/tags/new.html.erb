@@ -1,11 +1,11 @@
 <div class="container">
   <div class="half-width-form">
-  <%= form_with model: @tag, url: admin_tags_path do |f| %>
-    <div class="mb-2">
-      <%= f.label :name, "name" %>
-      <%= f.text_field :name, class: "form-control" %>
-    </div>
+    <%= form_with model: @tag, url: admin_tags_path do |f| %>
+      <div class="mb-2">
+        <%= f.label :name, "name" %>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
       <%= f.submit "保存する", class: "btn btn-border" %>
-  <% end %>
+    <% end %>
   </div>
 </div>

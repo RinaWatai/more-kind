@@ -1,6 +1,6 @@
 class Admin::FacilitiesController < ApplicationController
   before_action :authenticate_admin!
-  
+
   def index
     @facilities = Facility.all
     @facilities = @facilities.tagged_with(params[:tag]) if params[:tag].present?
@@ -9,7 +9,9 @@ class Admin::FacilitiesController < ApplicationController
   
   def show
     @facility = Facility.find(params[:id])
-    @comments = Comment.includes(:member).where(facility: @facility).where(members: { is_deleted: false})
+    @comments = Comment.includes(:member)
+                        .where(facility: @facility)
+                        .where(members: { is_deleted: false })
   end
 
   def destroy
@@ -17,7 +19,7 @@ class Admin::FacilitiesController < ApplicationController
     @facility.destroy
     redirect_to admin_facilities_path
   end
-  
+
   private
 
   def tag_params

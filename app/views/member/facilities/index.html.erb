@@ -24,19 +24,23 @@
         </div>
 
         <div class="card-index-body">
-          <div class="facility-description"><%= truncate(facility.body, length: 100) %>
-          <div>
-            〒<%= facility.postcode %>
+          <div class="facility-description">
+            <%= truncate(facility.body, length: 100) %>
+            <div>
+              〒<%= facility.postcode %>
               <%= facility.prefecture_name %>
               <%= facility.address_city %>
               <%= facility.address_street %>
               <%= facility.address_building %>
+            </div>
           </div>
+          <div class="tags">
+            <%= render "member/facilities/tag_list", tag_list: facility.tag_list %>
           </div>
-          <div class="tags"><%= render "member/facilities/tag_list", tag_list: facility.tag_list %></div>
         </div>
       </div>
     <% end %>
   <% end %>
+
   <%= paginate @facilities %>
 </div>

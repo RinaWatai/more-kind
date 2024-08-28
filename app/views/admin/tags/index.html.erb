@@ -7,11 +7,11 @@
     <div>
       <%= form_for Tag.new, url: admin_tag_delete_all_path, method: :delete do |f| %>
         <%= f.collection_check_boxes(:id, @tags, :id, :name) do |b| %>
-          <%= b.label { b.check_box +  b.text } %>
-      <% end %>
-    </div>
-    <div class="admin-tags-all-delete">
-        <%= f.submit "  まとめて削除する", data: { confirm: '本当に削除しますか?' }, class: 'btn btn-delete' %>
+          <%= b.label { b.check_box + b.text } %>
+        <% end %>
+        <div class="admin-tags-all-delete">
+          <%= f.submit "まとめて削除する", data: { confirm: '本当に削除しますか?' }, class: 'btn btn-delete' %>
+        </div>
       <% end %>
     </div>
   </div>
