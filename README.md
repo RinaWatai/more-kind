@@ -1,4 +1,4 @@
-# more kind
+# more kind.
 ## サイト概要
 ### サイトテーマ
 車椅子やベビーカーを使用している人が行きやすい施設を口コミできるレビューサイト
@@ -19,8 +19,10 @@
 行きたい施設があった時、予め注意した方がいいことがあるか調べたい時
 
 ## 設計書
-後程作成作成予定
-​
+  ###テーブル定義書:https://docs.google.com/spreadsheets/d/1jNTx57H4QDdxY7thm5SRYMOR8z2j0ErmdTh4YBzp-lw/edit?usp=drive_link
+​ ###ER図:https://drive.google.com/file/d/1qr_Z0PFZs-sYHsr67JVMeIzIMStkaY09/view?usp=drive_link
+
+
 ## 開発環境
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
