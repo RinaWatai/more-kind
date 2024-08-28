@@ -100,23 +100,23 @@
 .card {
   border: 1px solid #ccc;
   padding: 15px;
-  width: 300px; /* カードの幅を適切なサイズに設定 */
-  background-image: url('../images/card.jpg'); /* 背景画像を設定 */
-  background-size: cover; /* 画像がカード全体にフィットするようにする */
-  background-position: center; /* 画像の位置を中央に設定 */
-  background-repeat: no-repeat; /* 画像が繰り返されないようにする */
-  background-color: rgba(255, 255, 255, 0.8); /* 背景色を白に設定（透過度あり） */
-  background-blend-mode: overlay; /* 背景画像と背景色を合成して白く表示 */
+  width: 300px; /* デフォルトのカード幅 */
+  background-image: url('../images/card.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: rgba(255, 255, 255, 0.8);
+  background-blend-mode: overlay;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease, transform 0.5s ease; /* トランジションを調整 */
-  cursor: pointer; /* ホバー時にポインタカーソルを表示 */
-  overflow: hidden; /* カードの範囲外に内容がはみ出さないようにする */
+  transition: box-shadow 0.3s ease, transform 0.5s ease;
+  cursor: pointer;
+  overflow: hidden;
 }
 
 .card:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  background-color: rgba(255, 255, 255, 0.8); /* 背景色の強調 */
-  transform: scale(1.05); /* カードを少し大きくする */
+  background-color: rgba(255, 255, 255, 0.8);
+  transform: scale(1.05);
 }
 
 .card-header {

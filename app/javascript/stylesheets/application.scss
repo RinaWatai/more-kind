@@ -4,21 +4,30 @@
 @import "member";
 
 :root {
-  --primary-color: #d3381c;  /* 可愛らしいピンク色 */
-  --text-color: #333;        /* テキストの色 */
-  --background-color: #fff;  /* 背景色 */
-  --hover-color: #d3381c;    /* ホバー時の色 */
+  --primary-color: #d3381c;
+  --text-color: #333;
+  --background-color: #fff;
+  --hover-color: #d3381c;
+}
+
+.container {
+  margin-top: 210px;
+}
+
+body {
+  color: var(--text-color);
+  background-color: var(--background-color);
 }
 
 a {
-  text-decoration: none; /* デフォルトの下線を削除 */
-  color: inherit; /* テキストの色を親要素から継承 */
+  text-decoration: none;
+  color: inherit;
 }
 
 a:hover, a:focus, a:active {
-  text-decoration: none; /* ホバー、フォーカス、クリック時も下線を削除 */
-  color: #d3381c; /* ホバー時のリンク色（例） */
-  transition: color 0.3s ease; /* スムーズな色変更のためのトランジション */
+  text-decoration: none;
+  color: #d3381c;
+  transition: color 0.3s ease;
 }
 
 a:focus, 
@@ -27,7 +36,7 @@ input:focus,
 textarea:focus, 
 select:focus, 
 .card-index:focus {
-  outline: none; /* フォーカス時の枠線を表示しない */
+  outline: none;
 }
 
 * {
@@ -44,44 +53,50 @@ select:focus,
   top: 0;
   left: 0;
   z-index: 1000;
-  transition: transform 0.3s ease-in-out; /* スムーズな表示/非表示のためのトランジション */
+  transition: transform 0.3s ease-in-out
 }
 
 .header.hidden {
-  transform: translateY(-100%); /* ヘッダーを上に隠す */
+  transform: translateY(-100%);
 }
 
 .flash-messages {
   display: flex;
-  align-items: center; /* 垂直方向の中央揃え */
-  margin-left: 20px; /* ロゴとメッセージの間隔 */
+  align-items: center;
+  margin-left: 20px;
 }
 
 .flash-message {
-  background: none; /* 背景を削除 */
-  border: none; /* 枠線を削除 */
-  color: inherit; /* テキストの色を継承 */
-  padding: 0; /* パディングを削除 */
-  margin: 0; /* マージンを削除 */
-  font-size: 1rem; /* フォントサイズを設定（必要に応じて調整） */
-  white-space: nowrap; /* テキストが改行されないように */
+  background: none;
+  border: none;
+  color: inherit;
+  padding: 0;
+  margin: 0;
+  font-size: 1rem;
+  white-space: nowrap;
 }
 
-.container {
+.footer {
   text-align: center;
-  margin-top: 200px !important; /* 強制的に適用 */
+  padding-top: 20px;
+  width: 100%;
 }
 
 .background-image {
   background-image: url('../images/top_image.jpg');
   background-color: rgba(255, 255, 255, 0.8);
   background-blend-mode: lighten;
-  background-size: cover;
+  background-size: cover; /* 画面サイズに合わせて背景画像を調整 */
   background-repeat: no-repeat;
   background-position: center;
   min-height: 100vh;
   padding: 20px;
   background-attachment: fixed;
+  
+  /* Flexboxの設定を追加 */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* コンテンツを上下に配置 */
 }
 
 .btn-border {
@@ -91,7 +106,7 @@ select:focus,
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
   color: #d3381c;
-  position: relative; /* 必要な場合、positionをrelativeに設定 */
+  position: relative;
 }
 
 .btn-border:before {
