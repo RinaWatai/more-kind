@@ -99,7 +99,8 @@ select:focus,
   justify-content: space-between; /* コンテンツを上下に配置 */
 }
 
-.btn-border {
+.btn-border,
+.edit-submit {
   border: 2px solid #d3381c;
   border-radius: 5px;
   background: rgba(255, 255, 255, 0.9);
@@ -109,7 +110,8 @@ select:focus,
   position: relative;
 }
 
-.btn-border:before {
+.btn-border:before,
+.edit-submit:before {
   position: absolute;
   top: 0;
   left: 0;
@@ -121,12 +123,14 @@ select:focus,
   background: #d3381c;
 }
 
-.btn-border:hover {
+.btn-border:hover,
+.edit-submit:hover {
   color: #fff;
   background: #d3381c;
 }
 
-.btn-border:hover:before {
+.btn-border:hover:before,
+.edit-submit:hover:before {
   background: #fff;
 }
 

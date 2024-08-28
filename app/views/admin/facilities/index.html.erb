@@ -12,9 +12,6 @@
           <% end %>
           <div class="facility-info">
             <span class="facility-title"><%= facility.title %></span>
-            <div class="rating">
-              総合評価: <%= @facility_ratings.present? ? (@facility_ratings[facility.id] || '評価なし') : '評価なし' %>
-            </div>
           </div>
         </div>
 

@@ -17,8 +17,8 @@
     <%= f.file_field :image, id: 'image', accept: "image/*" %>
   </div>
   
-  <%= f.submit "更新", class: "btn-border" %>
+  <%= f.submit "更新", class: "btn btn-border" %>
 <% end %>
 
-<%= link_to "退会", confirm_withdraw_member_members_path, class: "btn btn-flat" %>
+<%= link_to "退会", confirm_withdraw_member_members_path, class: "btn btn-delete" %>
 </div>
