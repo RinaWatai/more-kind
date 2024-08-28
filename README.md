@@ -19,10 +19,10 @@
 行きたい施設があった時、予め注意した方がいいことがあるか調べたい時
 
 ## 設計書
-  ###テーブル定義書:https://docs.google.com/spreadsheets/d/1jNTx57H4QDdxY7thm5SRYMOR8z2j0ErmdTh4YBzp-lw/edit?usp=drive_link
-   ###ER図:
-​ ![ER図(admin)](https://github.com/user-attachments/assets/fceb4d89-bab3-42c6-8ac3-9e4372dd2492)
- ![ER図(member)](https://github.com/user-attachments/assets/aa6a00a3-84f7-42bd-82d6-c45066ae11a1)
+  - テーブル定義書:https://docs.google.com/spreadsheets/d/1jNTx57H4QDdxY7thm5SRYMOR8z2j0ErmdTh4YBzp-lw/edit?usp=drive_link
+  - ER図:
+​ 　　 ![ER図(admin)](https://github.com/user-attachments/assets/fceb4d89-bab3-42c6-8ac3-9e4372dd2492)
+     ![ER図(member)](https://github.com/user-attachments/assets/aa6a00a3-84f7-42bd-82d6-c45066ae11a1)
 
 ## 機能一覧
 - ユーザー登録、ログイン機能 (devise)
@@ -45,6 +45,6 @@
 本アプリケーションでは著作権に配慮し、主に架空のデータを使用しています。
 フリー画像については以下のサイトから提供を受けており、クレジット表記は不要です：
 - 画像の提供元: [photoAC](https://www.photo-ac.com/) と [vectorshelf](https://vectorshelf.com/)
-なお、実在するデータを使用する際には、事前に著作権保持者と契約を結んだ上で利用します。
+- なお、実在するデータを使用する際には、事前に著作権保持者と契約を結んだ上で利用します。
 
 
