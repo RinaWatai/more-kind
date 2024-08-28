@@ -243,12 +243,15 @@ input[type="checkbox"]:checked::after {
 .facility-details p {
   margin: 0 0 10px 0; /* 下のマージンを設定 */
   font-size: 16px; /* フォントサイズ */
+  display: flex; /* ラベルと内容を横並びにする */
+  flex-wrap: wrap; /* 内容が長い場合に折り返しを有効にする */
 }
 
 .facility-details strong {
   display: inline-block;
   min-width: 120px; /* ラベルの幅 */
   font-weight: bold; /* ラベルのフォントの太さ */
+  vertical-align: top; /* ラベルと内容の垂直位置を揃える */
 }
 
 .edit-button {
