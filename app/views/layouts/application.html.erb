@@ -5,78 +5,100 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-   <!--Bootstrap CSS 追記-->
+    <!--Bootstrap CSS 追記-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script type="text/javascript" src="//jpostal-1006.appspot.com/jquery.jpostal.js"></script>
     <script src="https://kit.fontawesome.com/fff1710ae4.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgEPWjwJfPn10u6rJ2u2bBhyeesK5HbCJ7q5dkiV0kK4eOmIkjF" crossorigin="anonymous"></script>
   </head>
 
   <body>
-      <header class="header">
-        <nav class="navbar navbar-expand-lg">
-          <%= link_to root_path do %>
-            <%= image_tag "logo.png", size: "100x100" %>
-          <% end %>
-          <div class="collapse navbar-collapse">
-            <ul class="navbar-nav ml-auto">
-              <!--管理者ログイン中ヘッダー-->
-              <% if admin_signed_in? %>
-                <li class="nav-item"><%= link_to '会員一覧', admin_members_path, class: 'btn btn-custom-pink btn-custom-white nav-link mr-3' %></li>
-                <li class="nav-item"><%= link_to 'タグ', admin_tags_path, class: 'btn btn-custom-pink btn-custom-white nav-link mr-3' %></li>
-                <li class="nav-item"><%= link_to '記事', admin_facilities_path, class: 'btn btn-custom-pink btn-custom-white nav-link mr-3' %></li>
-                <li class="nav-item"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'btn btn-custom-pink btn-custom-white nav-link mr-3' %></li>
-              <!--メンバー用ログイン中ヘッダー-->
-              <% elsif member_signed_in? %>
-                <li class="nav-item"><%= link_to 'About', about_path, class: 'btn btn-custom-pink btn-custom-white nav-link mr-3' %></li>
-                <li class="nav-item"><%= link_to 'マイページ', member_member_path(current_member), class: 'btn btn-custom-pink btn-custom-white nav-link mr-3' %></li>
-                <li class="nav-item"><%= link_to '施設一覧', member_facilities_path, class: 'btn btn-custom-pink btn-custom-white nav-link mr-3' %></li>
-                <li class="nav-item"><%= link_to 'ログアウト', destroy_member_session_path, method: :delete, class: 'btn btn-custom-pink btn-custom-white nav-link mr-3' %></li>
-              <!--未ログイン時ヘッダー-->
-              <% else %>
-                <li class="nav-item"><%= link_to 'About', about_path, class: 'btn btn-custom-pink btn-custom-white nav-link mr-3' %></li>
-                <li class="nav-item"><%= link_to '施設一覧', member_facilities_path, class: 'btn btn-custom-pink btn-custom-white nav-link mr-3' %></li>
-                <li class="nav-item"><%= link_to '新規登録', new_member_registration_path, class: 'btn btn-custom-pink btn-custom-white nav-link mr-3' %></li>
-                <li class="nav-item"><%= link_to 'ログイン', new_member_session_path, class: 'btn btn-custom-pink btn-custom-white nav-link mr-3' %></li>
-              <% end %>
-            </ul>
-          </div>
-        </nav>
-      </header>
-
-      <div class="background-image"> <!-- ここに新しいラッパーを追加 -->
-        <% if flash[:notice] %>
-          <div class="notice">
-            <%= flash[:notice] %>
-          </div>
+    <header class="header">
+      <nav class="navbar navbar-expand-lg">
+        <%= link_to root_path do %>
+          <%= image_tag "logo.png", size: "100x100" %>
         <% end %>
-        <%= yield %> <!-- ビューのコンテンツ -->
-          <footer class="footer">
-            ©more kind.
-          </footer>
-      </div>
-      
-  <script>
-  document.addEventListener('turbolinks:load', function() {
-    var header = document.querySelector('.header');
-    var lastScrollTop = 0;
-  
-    window.addEventListener('scroll', function() {
-      var currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-  
-      if (currentScroll > lastScrollTop) {
-        // 下にスクロール
-        header.classList.add('hidden');
-      } else {
-        // 上にスクロール
-        header.classList.remove('hidden');
-      }
-  
-      lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // ScrollTopが0以下の時も0に設定
-    });
-  });
-  </script>
+
+        <!-- ハンバーガーメニューのボタンを追加 -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- メニューを開閉する要素を追加 -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <!-- 管理者ログイン中ヘッダー -->
+            <% if admin_signed_in? %>
+              <li class="nav-item"><%= link_to '会員一覧', admin_members_path, class: 'btn btn-custom-pink btn-custom-white nav-link mr-3' %></li>
+              <li class="nav-item"><%= link_to 'タグ', admin_tags_path, class: 'btn btn-custom-pink btn-custom-white nav-link mr-3' %></li>
+              <li class="nav-item"><%= link_to '記事', admin_facilities_path, class: 'btn btn-custom-pink btn-custom-white nav-link mr-3' %></li>
+              <li class="nav-item"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'btn btn-custom-pink btn-custom-white nav-link mr-3' %></li>
+            <% elsif member_signed_in? %>
+              <!-- メンバー用ログイン中ヘッダー -->
+              <li class="nav-item"><%= link_to 'About', about_path, class: 'btn btn-custom-pink btn-custom-white nav-link mr-3' %></li>
+              <li class="nav-item"><%= link_to 'マイページ', member_member_path(current_member), class: 'btn btn-custom-pink btn-custom-white nav-link mr-3' %></li>
+              <li class="nav-item"><%= link_to '施設一覧', member_facilities_path, class: 'btn btn-custom-pink btn-custom-white nav-link mr-3' %></li>
+              <li class="nav-item"><%= link_to 'ログアウト', destroy_member_session_path, method: :delete, class: 'btn btn-custom-pink btn-custom-white nav-link mr-3' %></li>
+            <% else %>
+              <!-- 未ログイン時ヘッダー -->
+              <li class="nav-item"><%= link_to 'About', about_path, class: 'btn btn-custom-pink btn-custom-white nav-link mr-3' %></li>
+              <li class="nav-item"><%= link_to '施設一覧', member_facilities_path, class: 'btn btn-custom-pink btn-custom-white nav-link mr-3' %></li>
+              <li class="nav-item"><%= link_to '新規登録', new_member_registration_path, class: 'btn btn-custom-pink btn-custom-white nav-link mr-3' %></li>
+              <li class="nav-item"><%= link_to 'ログイン', new_member_session_path, class: 'btn btn-custom-pink btn-custom-white nav-link mr-3' %></li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <div class="background-image"> <!-- ここに新しいラッパーを追加 -->
+      <% if flash[:notice] %>
+        <div class="notice">
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
+      <%= yield %> <!-- ビューのコンテンツ -->
+      <footer class="footer">
+        ©more kind.
+      </footer>
+    </div>
+
+    <script>
+      document.addEventListener('turbolinks:load', function() {
+        var header = document.querySelector('.header');
+        var lastScrollTop = 0;
+        var navbarToggler = document.querySelector('.navbar-toggler');
+        var navbarCollapse = document.querySelector('.navbar-collapse');
+
+        window.addEventListener('scroll', function() {
+          var currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+          // メニューが開いている場合はスクロールによる動作を無効化
+          if (navbarCollapse.classList.contains('show')) {
+            return;
+          }
+
+          if (currentScroll > lastScrollTop) {
+            // 下にスクロール
+            header.classList.add('hidden');
+          } else {
+            // 上にスクロール
+            header.classList.remove('hidden');
+          }
+
+          lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // ScrollTopが0以下の時も0に設定
+        });
+
+        // ハンバーガーメニュー開閉時にヘッダーを常に表示
+        navbarToggler.addEventListener('click', function() {
+          header.classList.remove('hidden');
+        });
+      });
+    </script>
   </body>
 </html>

@@ -113,7 +113,7 @@
 .card-index-body {
   position: relative; 
   margin-top: 10px;
-  padding-bottom: 30px; 
+  padding-bottom: 70px; /* タグのスペースを確保する */
 }
 
 .facility-description {
@@ -123,7 +123,9 @@
 .tags {
   position: absolute;
   bottom: 0; 
-  right: 0; 
+  right: 0; /* 左下に配置 */
+  margin-right: 10px; /* 左端からの余白を調整 */
+  margin-bottom: 10px; /* 下端からの余白を調整 */
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 5px;
   z-index: 1; 
@@ -238,6 +240,8 @@ input[type="checkbox"]:checked::after {
   overflow-wrap: break-word; 
   word-wrap: break-word;
   word-break: break-word;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .facility-details p {
@@ -245,6 +249,10 @@ input[type="checkbox"]:checked::after {
   font-size: 16px;
   display: flex;
   flex-wrap: wrap;
+    width: 100%;
+}
+.facility-details p:last-child {
+  margin-bottom: 0;
 }
 
 .facility-details strong {

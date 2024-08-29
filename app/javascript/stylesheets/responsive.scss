@@ -1,0 +1,99 @@
+  /* home */
+@media (max-width: 768px) {
+  .other-rankings {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .card {
+    width: 80%;
+    max-width: 350px;
+  }
+}
+
+  /*ヘッダー */
+.navbar-toggler-icon {
+  display: inline-block;
+  width: 30px;
+  height: 3px;
+  background-color: var(--primary-color);
+  margin: 5px 0;
+  position: relative;
+}
+
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after {
+  content: '';
+  display: block;
+  width: 30px;
+  height: 3px;
+  background-color: var(--primary-color);
+  position: absolute;
+  left: 0;
+}
+
+.navbar-toggler-icon::before {
+  top: -10px;
+}
+
+.navbar-toggler-icon::after {
+  top: 10px;
+}
+
+/* facility index */
+  /* ソート機能 */
+@media (max-width: 768px) {
+  .facilities-sort {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .button-wrapper {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 10px;
+  }
+
+  .new-facility-btn {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 24px;
+    padding: 0;
+  }
+
+  .new-facility-btn::before {
+    content: '＋';
+    display: inline-block;
+    font-size: 24px;
+    color: var(--primary-color);
+  }
+
+  .sorting-options {
+    width: 100%;
+    text-align: left;
+  }
+
+  .sort-link {
+    display: block;
+    margin-bottom: 5px;
+  }
+}
+
+/* facility show */
+  /* tagの段落分け */
+@media (max-width: 768px) {
+  .facility-details p strong {
+    display: block; /* 「タグ：」を独立した行に表示 */
+    margin-bottom: 5px; /* 「タグ：」とタグリストの間にスペースを追加 */
+  }
+
+  .facility-details .tag_list {
+    display: block; /* タグリストを「タグ：」の下に表示 */
+    margin-top: 5px; /* 「タグ：」とタグリストの間にスペースを追加 */
+  }
+}

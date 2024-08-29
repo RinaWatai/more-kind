@@ -5,8 +5,8 @@
     </div>
     <div class="sorting-options">
       <%= link_to '新しい順', member_facilities_path(latest: "true"), class: 'sort-link' %>
-      | <%= link_to '古い順', member_facilities_path(old: "true"), class: 'sort-link' %>
-      | <%= link_to '評価の高い順', member_facilities_path(star_count: "true"), class: 'sort-link' %>
+      <%= link_to '古い順', member_facilities_path(old: "true"), class: 'sort-link' %>
+      <%= link_to '評価の高い順', member_facilities_path(star_count: "true"), class: 'sort-link' %>
     </div>
   </div>
 
@@ -25,7 +25,7 @@
 
         <div class="card-index-body">
           <div class="facility-description">
-            <%= truncate(facility.body, length: 100) %>
+            <%= truncate(facility.body, length: 300) %>
             <div>
               〒<%= facility.postcode %>
               <%= facility.prefecture_name %>
@@ -44,3 +44,4 @@
 
   <%= paginate @facilities %>
 </div>
+

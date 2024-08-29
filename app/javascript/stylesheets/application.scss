@@ -2,6 +2,7 @@
 @import "facilities";
 @import "homes";
 @import "member";
+@import "responsive";
 
 :root {
   --primary-color: #d3381c;
@@ -58,6 +59,18 @@ select:focus,
 
 .header.hidden {
   transform: translateY(-100%);
+}
+
+.navbar-toggler-icon {
+  background-color: var(--primary-color);
+  width: 30px;
+  height: 3px;
+  display: block;
+  margin: 5px 0;
+}
+
+.navbar-collapse.collapse.show {
+  background-color: #fdeff2; /* ハンバーガーメニュー開いた時の背景色 */
 }
 
 .flash-messages {
