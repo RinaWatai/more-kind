@@ -1,13 +1,16 @@
-const { environment } = require('@rails/webpacker')
+require("dotenv").config();
 
-module.exports = environment
+const { environment } = require('@rails/webpacker');
+const webpack = require('webpack');
 
-const webpack = require('webpack')
+// ProvidePlugin を環境に追加
 environment.plugins.prepend(
   'Provide',
   new webpack.ProvidePlugin({
-    $: 'jquery/src/jquery',
-    jQuery: 'jquery/src/jquery',
+    $: 'jquery',
+    jQuery: 'jquery',
     Popper: 'popper.js'
   })
-)
+);
+
+module.exports = environment;

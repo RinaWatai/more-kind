@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :member do
+    get 'maps/show'
+  end
   root 'homes#top' # ルートを Member::HomesController の top アクションに設定
   get '/about', to: 'homes#about'
   
@@ -27,6 +30,7 @@ Rails.application.routes.draw do
         get 'search'
       end
       resources :comments, only: [:create, :destroy]
+      resource :map, only: [:show] 
     end
   end
 

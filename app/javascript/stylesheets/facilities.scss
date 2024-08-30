@@ -1,3 +1,8 @@
+#map {
+  width: 100%;
+  height: calc(100vh - 88px - 179px);
+}
+
 .facilities-sort {
   margin-bottom: 20px;
   display: flex;
@@ -122,13 +127,13 @@
 
 .tags {
   position: absolute;
-  bottom: 0; 
-  right: 0; /* 左下に配置 */
-  margin-right: 10px; /* 左端からの余白を調整 */
-  margin-bottom: 10px; /* 下端からの余白を調整 */
+  bottom: 0;
+  right: 0;
+  margin-right: 10px;
+  margin-bottom: 10px;
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 5px;
-  z-index: 1; 
+  z-index: 1;
 }
 
 .tags .tag {
@@ -189,7 +194,7 @@ input[type="checkbox"]:checked::after {
   padding: 20px;
   margin-bottom: 80px;
   box-sizing: border-box;
-  overflow: hidden; 
+  overflow: hidden;
 }
 
 .facility-comments-table {
@@ -237,11 +242,11 @@ input[type="checkbox"]:checked::after {
   text-align: left;
   margin-left: 40px;
   margin-bottom: 200px;
-  overflow-wrap: break-word; 
+  overflow-wrap: break-word;
   word-wrap: break-word;
   word-break: break-word;
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .facility-details p {
@@ -269,8 +274,8 @@ input[type="checkbox"]:checked::after {
 }
 
 .facility-title {
-  font-size: 100px; 
-  font-weight: bold; 
+  font-size: 100px;
+  font-weight: bold;
 }
 
 .half-width-form {
