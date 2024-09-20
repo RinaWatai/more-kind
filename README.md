@@ -21,7 +21,7 @@
 ## 設計書
   - テーブル定義書:https://docs.google.com/spreadsheets/d/1jNTx57H4QDdxY7thm5SRYMOR8z2j0ErmdTh4YBzp-lw/edit?usp=drive_link
   - ER図:
-​ 　　 ![ER図(admin)](https://github.com/user-attachments/assets/fceb4d89-bab3-42c6-8ac3-9e4372dd2492)
+​ 　 ![ER図(admin)](https://github.com/user-attachments/assets/fceb4d89-bab3-42c6-8ac3-9e4372dd2492)
      ![ER図(member)](https://github.com/user-attachments/assets/aa6a00a3-84f7-42bd-82d6-c45066ae11a1)
 
 ## 機能一覧

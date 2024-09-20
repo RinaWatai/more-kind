@@ -4,13 +4,13 @@
 });
 
 
-// ライブラリの読み込み
+
 let map;
   /* global google */
 async function initMap() {
   const { Map } = await google.maps.importLibrary("maps");
 
-  // 地図の中心と倍率は公式から変更しています。
+
   map = new Map(document.getElementById("map"), {
     center: { lat: 35.681236, lng: 139.767125 }, 
     zoom: 15,
