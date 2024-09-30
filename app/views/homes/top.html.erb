@@ -19,7 +19,6 @@
 
     <h3 class="ranking">総合ランキング</h3>
     
-    <!-- 1位の施設を表示 -->
     <div class="top-ranking">
       <% top_facility = @facilities_sorted.first %>
       <% if top_facility.present? && @facility_ratings[top_facility.id].present? %>
