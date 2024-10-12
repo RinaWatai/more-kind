@@ -22,14 +22,13 @@
           <%= image_tag "logo.png", size: "100x100" %>
         <% end %>
 
-        <!-- ハンバーガーメニューのボタンを追加 -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <!-- メニューを開閉する要素を追加 -->
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-auto">
+            
             <!-- 管理者ログイン中ヘッダー -->
             <% if admin_signed_in? %>
               <li class="nav-item"><%= link_to '会員一覧', admin_members_path, class: 'btn btn-custom-pink btn-custom-white nav-link mr-3' %></li>
