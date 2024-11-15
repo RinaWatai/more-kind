@@ -88,4 +88,10 @@
       <%= flash[:alert] %>
     </div>
   <% end %>
+  
+<div class="maps">
+  <div id="map"></div>
+</div>
+<%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>
+
 </div>
